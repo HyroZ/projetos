@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações Aritméticas</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+input[type="number"], operator, .result {
+    width: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.operator, .result {
+    background-color: #e0e0e0;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+<body>
+
+<div class="container">
+    <h1>Operações Aritméticas</h1>
+    <input type="number" id="num1" placeholder="Número 1">
+    <span class="operator" id="operator"></span>
+    <input type="number" id="num2" placeholder="Número 2">
+    <span class="result" id="resultado"></span>
+    <br>
+    <button onclick="realizarOperacao('+')" id="btnSoma">+</button>
+    <button onclick="realizarOperacao('-')" id="btnSubtracao">-</button>
+    <button onclick="realizarOperacao('*')" id="btnMultiplicacao">*</button>
+    <button onclick="realizarOperacao('/')" id="btnDivisao">/</button>
+</div>
+<script>
+    function realizarOperacao(operacao) {
+    var num1 = parseFloat(document.getElementById('num1').value);
+    var num2 = parseFloat(document.getElementById('num2').value);
+    var resultado;
+    switch(operacao) {
+        case '+':
+            resultado = num1 + num2;
+            break;
+        case '-':
+            resultado = num1 - num2;
+            break;
+        case '*':
+            resultado = num1 * num2;
+            break;
+        case '/':
+            if (num2 !== 0) {
+                resultado = num1 / num2;
+            } else {
+                alert("Erro: Divisão por zero!");
+                return;
+            }
+            break;
+        default:
+            alert("Operação inválida!");
+            return;
+    }
+    document.getElementById("resultado").innerText = `Resultado: ${resultado}`;
+}
+</script>
+
+
+
+
+</body>
+</html>
