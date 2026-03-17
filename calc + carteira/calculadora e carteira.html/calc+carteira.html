@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Carteira</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico&display=swap">
+    <link rel="stylesheet" href="styleC.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Minha Carteira</h1>
+        <p>Controle de gastos pessoais</p>
+    </header>
+    <div class="container">
+        <h2>Calculadora</h2>
+        <div class="calculadora">
+            <input type="text" id="resultado" oninput="this.value = this.value.replace(/[^0-9+\-*/ ]/g, '')">
+            <br>
+            <input type="button" value="1" onclick="inserir(1)">
+            <input type="button" value="2" onclick="inserir(2)">
+            <input type="button" value="3" onclick="inserir(3)">
+            <input type="button" value="+" onclick="operacao('+')">
+            <br>
+            <input type="button" value="4" onclick="inserir(4)">
+            <input type="button" value="5" onclick="inserir(5)">
+            <input type="button" value="6" onclick="inserir(6)">
+            <input type="button" value="-" onclick="operacao('-')">
+            <br>
+            <input type="button" value="7" onclick="inserir(7)">
+            <input type="button" value="8" onclick="inserir(8)">
+            <input type="button" value="9" onclick="inserir(9)">
+            <input type="button" value="*" onclick="operacao('*')">
+            <br>
+            <input type="button" value="0" onclick="inserir(0)">
+            <input type="button" value="C" onclick="limpar()">
+            <input type="button" value="=" onclick="calcular()">
+            <input type="button" value="/" onclick="operacao('/')">
+        </div>
+    </div>/
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Descrição</th>
+                    <th colspan="3">Abril</th>
+                    <th colspan="3">Maio</th>
+                    <th colspan="3">Junho</th>
+                </tr>
+                <tr>
+                    <th>Item</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Vencimento</th>
+                    <th>Situação</th>
+                    <th>Valor</th>
+                    <th>Vencimento</th>
+                    <th>Situação</th>
+                    <th>Valor</th>
+                    <th>Vencimento</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>1</td>
+                <td>Aluguel</td>
+                <td>R$ 650,00</td>
+                <td>15</td>
+                <td class="pago">Pago</td>
+                <td>R$ 650,00</td>
+                <td>15</td>
+                <td class="pago">Pago</td>
+                <td>R$ 650,00</td>
+                <td>15</td>
+                <td class="em-aberto">Em aberto</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Faculdade</td>
+                    <td>R$ 300,00</td>
+                    <td>10</td>
+                    <td class="pago">Pago</td>
+                    <td>R$ 300,00</td>
+                    <td>10</td>
+                    <td class="pago">Pago</td>
+                    <td>R$ 300,00</td>
+                    <td>10</td>
+                    <td class="atrasado">Atrasado</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Energia</td>
+                    <td>R$ 180,00</td>
+                    <td>5</td>
+                    <td class="pago">Pago</td>
+                    <td>R$ 150,00</td>
+                    <td>5</td>
+                    <td class="pago">Pago</td>
+                    <td>R$ 200,00</td>
+                    <td>5</td>
+                    <td class="atrasado">Atrasado</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Água e esgoto</td>
+                    <td>R$ 70,00</td>
+                    <td>8</td>
+                    <td class="pago">Pago</td>
+                    <td>R$ 90,00</td>
+                    <td>8</td>
+                    <td class="atrasado">Atrasado</td>
+                    <td>R$ 80,00</td>
+                    <td>8</td>
+                    <td class="atrasado">Atrasado</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td>Empréstimo Pessoal</td>
+                    <td>R$ 500,00</td>
+                    <td>18</td>
+                    <td class="pago">Pago</td>
+                    <td>R$ 300,00</td>
+                    <td>18</td>
+                    <td class="atrasado">Atrasado</td>
+                    <td>R$ 800,00</td>
+                    <td>18</td>
+                    <td class="em-aberto">Em Aberto</td>
+                </tr>
+
+                <tr height="30%" align="center" bgcolor="white">
+                    <td colspan="2"></td>
+                    <th bgcolor="limegreen">R$ 1.700,00</th>
+                    <td colspan="2"></td>
+                    <th bgcolor="limegreen">R$ 1.490,00</th>
+                    <td colspan="2"></td>
+                    <th bgcolor="limegreen">R$ 2.030,00</th>
+                    <td colspan="2"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer style="background: #EA7777; padding: 20px 50px; color: #fff; margin-top: 100px;">
+        <h3>
+            Minha Carteira - Controle de Gastos Pessoais <br>| Desenvolvido por Josué B Soares | &copy; 2026 
+        </h3>
+    </footer>
+</body>
+</html>
