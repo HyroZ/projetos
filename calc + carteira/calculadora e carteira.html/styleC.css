@@ -1,0 +1,91 @@
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #fff;
+    }
+
+    .container, .table-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px;
+        margin: 20px auto;
+        max-width: 800px;
+        text-align: center;
+    }
+
+    .table-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 1200px;
+        text-align: center;
+    }
+
+    input[type="number"], .operator, .result {
+        width: 80px;
+        padding: 10px;
+        margin:10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .operator, .result {
+        background-color: #e0e0e0;
+        text-align: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white; 
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .selected {
+        background-color: #0056b3;
+    }
+
+    header, footer {
+        background: #EA7777;
+        padding: 20px 50px;
+        color: #fff;
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f9f9f9;
+    }
+
+    .pago {
+        color: limegreen;
+    }
+
+    .atrasado {
+        color: red;
+    }
+
+    .em-aberto {
+        color:blue;
+    }
