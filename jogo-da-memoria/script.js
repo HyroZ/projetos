@@ -51,7 +51,7 @@ function createBoard() {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
         const imgElement = document.createElement('img');
-        imgElement.src = `images/${card}.png`; //Ajusta o caminho da imagem conforme necessário
+        imgElement.src = `/projetos/jogo-da-memoria/images/${card}.png`; //Ajusta o caminho da imagem conforme necessário
         imgElement.alt = card;
         cardElement.appendChild(imgElement);
         cardElement.dataset.card = card;
