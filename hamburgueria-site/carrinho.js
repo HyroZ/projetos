@@ -1,23 +1,12 @@
-/* ==========================================================
-   ARTE BURGERS — carrinho.js
-   Lógica completa do carrinho de compras
-   Persistência via localStorage, UI reativa
-   ========================================================== */
 
-/* ----------------------------------------------------------
-   ESTADO DO CARRINHO
-   ---------------------------------------------------------- */
+/* ESTADO DO CARRINHO */
 var carrinho     = [];          // Array de itens { id, nome, preco, imagem, quantidade }
 var taxaEntrega  = 0;           // Taxa de entrega atual (R$)
-var CART_KEY     = 'arteburgers_cart_v1'; // Chave do localStorage
+var CART_KEY     = 'artburgers_cart_v1';
 
 
-/* ----------------------------------------------------------
-   INICIALIZAÇÃO
-   ---------------------------------------------------------- */
-/**
- * Carrega o carrinho do localStorage e atualiza a UI
- */
+/* INICIALIZAÇÃO */
+/* Carrega o carrinho do localStorage e atualiza a UI */
 function inicializarCarrinho() {
   carregarCarrinhoStorage();
   atualizarCarrinhoUI();
@@ -33,7 +22,7 @@ function carregarCarrinhoStorage() {
       }
     }
   } catch (e) {
-    console.warn('Arte Burgers: Não foi possível carregar o carrinho do localStorage.', e);
+    console.warn('Art Burgers: Não foi possível carregar o carrinho do localStorage.', e);
     carrinho = [];
   }
 }
@@ -42,14 +31,12 @@ function salvarCarrinhoStorage() {
   try {
     localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
   } catch (e) {
-    console.warn('Arte Burgers: Não foi possível salvar o carrinho no localStorage.', e);
+    console.warn('Art  Burgers: Não foi possível salvar o carrinho no localStorage.', e);
   }
 }
 
 
-/* ----------------------------------------------------------
-   OPERAÇÕES DO CARRINHO
-   ---------------------------------------------------------- */
+/* OPERAÇÕES DO CARRINHO */
 
 /**
  * Adiciona um produto ao carrinho.
