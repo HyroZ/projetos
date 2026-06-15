@@ -1,11 +1,9 @@
-/* ==========================================================
+/* 
    ARTE BURGERS — Folha de Estilos Principal
    Mobile First | Responsivo | Identidade Visual Completa
-   ========================================================== */
+*/
 
-/* ----------------------------------------------------------
-   1. VARIÁVEIS DO SISTEMA DE DESIGN
-   ---------------------------------------------------------- */
+/* 1. VARIÁVEIS DO SISTEMA DE DESIGN */
 :root {
   /* Cores principais */
   --color-primary:    #6B0010;
@@ -81,9 +79,7 @@
 }
 
 
-/* ----------------------------------------------------------
-   2. RESET & BASE
-   ---------------------------------------------------------- */
+/* 2. RESET & BASE */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -137,9 +133,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   3. UTILITÁRIOS
-   ---------------------------------------------------------- */
+/* 3. UTILITÁRIOS */
 .container {
   width: 100%;
   max-width: var(--container);
@@ -186,10 +180,7 @@ input, select, textarea {
   margin-bottom: 2.5rem;
 }
 
-
-/* ----------------------------------------------------------
-   4. BOTÕES
-   ---------------------------------------------------------- */
+/* 4. BOTÕES */
 .btn-cta {
   display: inline-flex;
   align-items: center;
@@ -259,10 +250,7 @@ input, select, textarea {
 }
 .btn-finalizar:active { transform: translateY(0); }
 
-
-/* ----------------------------------------------------------
-   5. NAVBAR
-   ---------------------------------------------------------- */
+/* 5. NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -453,7 +441,6 @@ input, select, textarea {
   transition: transform var(--trans-base), opacity var(--trans-base), width var(--trans-base);
   transform-origin: center;
 }
-
 .hamburger-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger-btn.active span:nth-child(2) { opacity: 0; width: 0; }
 .hamburger-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -474,10 +461,7 @@ input, select, textarea {
   pointer-events: all;
 }
 
-
-/* ----------------------------------------------------------
-   6. HERO
-   ---------------------------------------------------------- */
+/* 6. HERO */
 .hero {
   min-height: 100dvh;
   background: var(--grad-hero);
@@ -688,9 +672,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   7. SOBRE NÓS
-   ---------------------------------------------------------- */
+/* 7. SOBRE NÓS */
 .sobre {
   padding: 5rem 0;
   background: var(--color-white);
@@ -806,9 +788,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   8. SEÇÕES COMUNS (DESTAQUES + CARDÁPIO)
-   ---------------------------------------------------------- */
+/* 8. SEÇÕES COMUNS (DESTAQUES + CARDÁPIO) */
 .destaques {
   padding: 5rem 0;
   background: var(--color-bg-section);
@@ -826,7 +806,6 @@ input, select, textarea {
   background: radial-gradient(circle, rgba(246,193,58,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
-
 .cardapio {
   padding: 5rem 0;
   background: var(--color-bg-warm);
@@ -943,7 +922,6 @@ input, select, textarea {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 .produto-footer {
   display: flex;
   align-items: center;
@@ -951,7 +929,6 @@ input, select, textarea {
   gap: 0.5rem;
   margin-top: auto;
 }
-
 .produto-preco {
   font-family: var(--font-accent);
   font-size: 1.2rem;
@@ -982,7 +959,6 @@ input, select, textarea {
   box-shadow: 0 4px 14px rgba(107,0,16,0.3);
 }
 .add-btn:active { transform: scale(0.97); }
-
 .add-btn.in-cart {
   background: linear-gradient(135deg, #166534 0%, #16a34a 100%);
   box-shadow: 0 2px 10px rgba(22,101,52,0.3);
@@ -1055,9 +1031,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   9. AVALIAÇÕES
-   ---------------------------------------------------------- */
+/* 9. AVALIAÇÕES */
 .avaliacoes {
   padding: 5rem 0;
   background: var(--grad-primary);
@@ -1149,9 +1123,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   10. CONTATO
-   ---------------------------------------------------------- */
+/* 10. CONTATO */
 .contato {
   padding: 5rem 0;
   background: var(--color-white);
@@ -1234,9 +1206,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   11. FOOTER
-   ---------------------------------------------------------- */
+/* 11. FOOTER */
 .footer {
   background: var(--color-darker);
   color: rgba(255,255,255,0.75);
@@ -1345,9 +1315,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   12. CART SIDEBAR
-   ---------------------------------------------------------- */
+/* 12. CART SIDEBAR */
 .cart-overlay {
   position: fixed;
   inset: 0;
@@ -1743,14 +1711,12 @@ input, select, textarea {
   min-width: 90px;
   cursor: pointer;
 }
-
 .payment-option input[type="radio"] {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .payment-label {
   display: flex;
   flex-direction: column;
@@ -1807,7 +1773,6 @@ input, select, textarea {
   line-height: 1.4;
 }
 
-
 /* ELEMENTOS FLUTUANTES // BACK TO TOP & WHATSAPP */
 .back-to-top {
   position: fixed;
@@ -1862,9 +1827,7 @@ input, select, textarea {
 .wf-label { display: none; }
 
 
-/* ----------------------------------------------------------
-   14. TOAST
-   ---------------------------------------------------------- */
+/* 14. TOAST */
 .toast {
   position: fixed;
   bottom: 6rem;
@@ -1893,10 +1856,7 @@ input, select, textarea {
 .toast.toast-error   { background: #991b1b; }
 .toast.toast-info    { background: #1e3a5f; }
 
-
-/* ----------------------------------------------------------
-   15. SCROLL REVEAL ANIMATIONS
-   ---------------------------------------------------------- */
+/* 15. SCROLL REVEAL ANIMATIONS */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1924,10 +1884,7 @@ input, select, textarea {
 .animate-delay-3 { animation-delay: 0.45s; }
 .animate-delay-4 { animation-delay: 0.6s;  }
 
-
-/* ----------------------------------------------------------
-   16. KEYFRAMES
-   ---------------------------------------------------------- */
+/* 16. KEYFRAMES */
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -1959,10 +1916,7 @@ input, select, textarea {
   to   { opacity: 1; transform: translateX(0); }
 }
 
-
-/* ----------------------------------------------------------
-   17. RESPONSIVO — 480px
-   ---------------------------------------------------------- */
+/* 17. RESPONSIVO — 480px */
 @media (min-width: 480px) {
   .container { padding-inline: 1.25rem; }
 
@@ -1983,9 +1937,7 @@ input, select, textarea {
 }
 
 
-/* ----------------------------------------------------------
-   18. RESPONSIVO — 768px (Tablet)
-   ---------------------------------------------------------- */
+/* 18. RESPONSIVO — 768px (Tablet) */
 @media (min-width: 768px) {
   :root { --nav-h: 76px; }
 
@@ -2044,10 +1996,7 @@ input, select, textarea {
   .cart-sidebar { width: var(--cart-w); }
 }
 
-
-/* ----------------------------------------------------------
-   19. RESPONSIVO — 1024px (Desktop)
-   ---------------------------------------------------------- */
+/* 19. RESPONSIVO — 1024px (Desktop) */
 @media (min-width: 1024px) {
   /* Hero: layout split */
   .hero-container {
@@ -2083,10 +2032,7 @@ input, select, textarea {
   .contato-mapa iframe { min-height: 380px; }
 }
 
-
-/* ----------------------------------------------------------
-   20. RESPONSIVO — 1280px (Large Desktop)
-   ---------------------------------------------------------- */
+/* 20. RESPONSIVO — 1280px (Large Desktop) */
 @media (min-width: 1280px) {
   .produtos-grid { grid-template-columns: repeat(4, 1fr); }
 
@@ -2098,10 +2044,7 @@ input, select, textarea {
   .wf-label { display: inline; }
 }
 
-
-/* ----------------------------------------------------------
-   21. IMPRESSÃO
-   ---------------------------------------------------------- */
+/*  21. IMPRESSÃO */
 @media print {
   .navbar, .cart-sidebar, .cart-overlay,
   .back-to-top, .whatsapp-float, .toast { display: none !important; }

@@ -1,12 +1,10 @@
-/* ==========================================================
+/* 
    ARTE BURGERS — app.js
    Orquestração principal da aplicação
    Inicialização, Navbar, Scroll, Animações, Utilitários
-   ========================================================== */
+*/
 
-/* ----------------------------------------------------------
-   INICIALIZAÇÃO DA APLICAÇÃO
-   ---------------------------------------------------------- */
+/* INICIALIZAÇÃO DA APLICAÇÃO */
 document.addEventListener('DOMContentLoaded', function () {
   inicializarApp();
 });
@@ -38,10 +36,7 @@ function inicializarApp() {
   });
 }
 
-
-/* ----------------------------------------------------------
-   EVENTOS DO CARRINHO
-   ---------------------------------------------------------- */
+/* EVENTOS DO CARRINHO */
 function vincularEventosCarrinho() {
   const cartBtn     = document.getElementById('cartBtn');
   const cartClose   = document.getElementById('cartClose');
@@ -52,10 +47,7 @@ function vincularEventosCarrinho() {
   if (cartOverlay) cartOverlay.addEventListener('click', fecharCarrinho);
 }
 
-
-/* ----------------------------------------------------------
-   NAVBAR — scroll + link ativo
-   ---------------------------------------------------------- */
+/* NAVBAR — scroll + link ativo */
 function inicializarNavbar() {
   const navbar   = document.getElementById('navbar');
   const sections = document.querySelectorAll('section[id]');
@@ -100,10 +92,7 @@ function destacarLinkAtivo(sections) {
   });
 }
 
-
-/* ----------------------------------------------------------
-   MENU HAMBÚRGUER (MOBILE)
-   ---------------------------------------------------------- */
+/* MENU HAMBÚRGUER (MOBILE) */
 function inicializarHamburger() {
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const navOverlay   = document.getElementById('navOverlay');
@@ -167,9 +156,7 @@ function fecharMenu() {
 }
 
 
-/* ----------------------------------------------------------
-   SCROLL SUAVE (SMOOTH SCROLL)
-   ---------------------------------------------------------- */
+/* SCROLL SUAVE (SMOOTH SCROLL) */
 function inicializarSmoothScroll() {
   // Aplica scroll suave a todos os links âncora internos
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
@@ -200,10 +187,7 @@ function scrollToSection(id) {
   window.scrollTo({ top: offsetTop, behavior: 'smooth' });
 }
 
-
-/* ----------------------------------------------------------
-   BOTÃO VOLTAR AO TOPO
-   ---------------------------------------------------------- */
+/* BOTÃO VOLTAR AO TOPO */
 function inicializarBackToTop() {
   const btn = document.getElementById('backToTop');
   if (!btn) return;
@@ -221,10 +205,7 @@ function inicializarBackToTop() {
   });
 }
 
-
-/* ----------------------------------------------------------
-   ANIMAÇÕES DE SCROLL (IntersectionObserver)
-   ---------------------------------------------------------- */
+/* ANIMAÇÕES DE SCROLL (IntersectionObserver) */
 function inicializarScrollReveal() {
   // Verifica suporte ao IntersectionObserver
   if (!('IntersectionObserver' in window)) {
@@ -279,10 +260,7 @@ function reobservarElementos() {
   });
 }
 
-
-/* ----------------------------------------------------------
-   MÁSCARA DE TELEFONE
-   ---------------------------------------------------------- */
+/* MÁSCARA DE TELEFONE */
 function inicializarMascarasTelefone() {
   const campo = document.getElementById('clienteTelefone');
   if (!campo) return;
@@ -311,10 +289,7 @@ function inicializarMascarasTelefone() {
   });
 }
 
-
-/* ----------------------------------------------------------
-   SISTEMA DE TOAST / NOTIFICAÇÕES
-   ---------------------------------------------------------- */
+/* SISTEMA DE TOAST / NOTIFICAÇÕES */
 let toastTimer = null;
 
 /**
@@ -341,10 +316,7 @@ function mostrarToast(mensagem, tipo, duracao) {
   }, duracao);
 }
 
-
-/* ----------------------------------------------------------
-   UTILITÁRIO — Formatar moeda BRL
-   ---------------------------------------------------------- */
+/* UTILITÁRIO — Formatar moeda BRL */
 /**
  * Formata número para moeda brasileira
  * @param {number} valor
@@ -357,10 +329,7 @@ function formatarMoeda(valor) {
   });
 }
 
-
-/* ----------------------------------------------------------
-   UTILITÁRIO — Debounce
-   ---------------------------------------------------------- */
+/* UTILITÁRIO — Debounce */
 function debounce(fn, espera) {
   let timer;
   return function () {

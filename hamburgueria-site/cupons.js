@@ -104,11 +104,9 @@ function aplicarCupom() {
   }
 
   exibirFeedbackCupom('success', '✓ Cupom aplicado: ' + cupomAtivo.descricao);
-
   if (typeof atualizarTotais === 'function') atualizarTotais();
   if (typeof mostrarToast    === 'function') mostrarToast('🎉 Cupom "' + codigo + '" aplicado!', 'success');
 }
-
 
 /* REMOVER CUPOM */
 /**
@@ -137,22 +135,18 @@ function removerCupom() {
   if (typeof mostrarToast    === 'function') mostrarToast('Cupom removido.', 'info');
 }
 
-
 /* CÁLCULO DO DESCONTO DE PRODUTO */
 /**
  * Retorna o valor do desconto sobre o subtotal dos produtos.
  * Chamada por atualizarTotais() em carrinho.js.
- *
  * @param {number} subtotal - Subtotal atual do carrinho
  * @returns {number} Valor de desconto em R$
  */
 function calcularDesconto(subtotal) {
   if (!cupomAtivo) return 0;
-
   if (cupomAtivo.tipo === 'percentual') {
     return subtotal * (cupomAtivo.valor / 100);
   }
-
   if (cupomAtivo.tipo === 'fixo') {
     // Não desconta mais do que o subtotal
     return Math.min(cupomAtivo.valor, subtotal);
@@ -161,7 +155,6 @@ function calcularDesconto(subtotal) {
   // Tipo 'frete' não gera desconto no subtotal do produto
   return 0;
 }
-
 /** CÁLCULO DO DESCONTO DE FRETE */
 /**
  * Retorna o valor do desconto aplicável sobre a taxa de entrega.
@@ -178,11 +171,7 @@ function calcularDescontoFrete() {
 
   return 0;
 }
-
-
-/* ----------------------------------------------------------
-   UI — Feedback visual do cupom
-   ---------------------------------------------------------- */
+/* UI — Feedback visual do cupom */
 /**
  * Exibe uma mensagem de feedback abaixo do campo de cupom.
  * @param {'success'|'error'|''} tipo

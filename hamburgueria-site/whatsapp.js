@@ -1,17 +1,9 @@
-/* ==========================================================
-   ARTE BURGERS — whatsapp.js
-   Geração da mensagem de pedido e integração com WhatsApp
-   ========================================================== */
+/* Geração da mensagem de pedido e integração com WhatsApp */
 
-/* ----------------------------------------------------------
-   CONFIGURAÇÃO
-   ---------------------------------------------------------- */
+/* CONFIGURAÇÃO */
 var WHATSAPP_NUMERO = '553892610825'; // Número da hamburgueria com DDI
 
-
-/* ----------------------------------------------------------
-   FINALIZAR PEDIDO (chamada pelo botão)
-   ---------------------------------------------------------- */
+/* FINALIZAR PEDIDO (chamada pelo botão) */
 /**
  * Valida o formulário, gera a mensagem e abre o WhatsApp.
  * Chamada pelo onclick do botão "Finalizar Pedido".
@@ -86,9 +78,7 @@ function finalizarPedido() {
 }
 
 
-/* ----------------------------------------------------------
-   GERAÇÃO DA MENSAGEM WHATSAPP
-   ---------------------------------------------------------- */
+/* GERAÇÃO DA MENSAGEM WHATSAPP */
 /**
  * Monta a string formatada do pedido para envio via WhatsApp.
  * @param {string} formaPagamento - 'PIX' | 'CARTÃO' | 'DINHEIRO'
@@ -179,11 +169,7 @@ function gerarMensagemPedido(formaPagamento) {
 
   return msg;
 }
-
-
-/* ----------------------------------------------------------
-   CONTROLE DO CAMPO "TROCO"
-   ---------------------------------------------------------- */
+/* CONTROLE DO CAMPO "TROCO" */
 /**
  * Exibe ou oculta o campo de troco conforme a forma de pagamento.
  * Chamada pelo onchange dos radio buttons de pagamento.
@@ -193,7 +179,6 @@ function verificarPagamento() {
   var trocoField  = document.getElementById('trocoField');
 
   if (!trocoField) return;
-
   if (pagamentoEl && pagamentoEl.value === 'DINHEIRO') {
     trocoField.style.display = 'block';
   } else {
@@ -205,9 +190,7 @@ function verificarPagamento() {
 }
 
 
-/* ----------------------------------------------------------
-   LIMPEZA DO FORMULÁRIO
-   ---------------------------------------------------------- */
+/* LIMPEZA DO FORMULÁRIO */
 function limparFormularioPedido() {
   var campos = [
     'clienteNome',
@@ -237,9 +220,7 @@ function limparFormularioPedido() {
 }
 
 
-/* ----------------------------------------------------------
-   VALIDAÇÃO — helpers visuais
-   ---------------------------------------------------------- */
+/* VALIDAÇÃO — helpers visuais */
 function marcarCampoErro(el) {
   if (!el) return;
   var grupo = el.closest('.form-group');
@@ -256,15 +237,11 @@ function limparErrosFormulario() {
   });
 }
 
-
-/* ----------------------------------------------------------
-   HELPER INTERNO
-   ---------------------------------------------------------- */
+/* HELPER INTERNO */
 function obterValorCampo(id) {
   var el = document.getElementById(id);
   return el ? el.value.trim() : '';
 }
-
 /** Reutiliza formatarMoeda do contexto global */
 function formatarMoeda(valor) {
   return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
