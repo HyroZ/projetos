@@ -110,9 +110,7 @@ function aplicarCupom() {
 }
 
 
-/* ----------------------------------------------------------
-   REMOVER CUPOM
-   ---------------------------------------------------------- */
+/* REMOVER CUPOM */
 /**
  * Remove o cupom ativo e restaura o campo de input.
  * Chamada pelo onclick do botão "Remover" (após aplicar cupom).
@@ -140,9 +138,7 @@ function removerCupom() {
 }
 
 
-/* ----------------------------------------------------------
-   CÁLCULO DO DESCONTO DE PRODUTO
-   ---------------------------------------------------------- */
+/* CÁLCULO DO DESCONTO DE PRODUTO */
 /**
  * Retorna o valor do desconto sobre o subtotal dos produtos.
  * Chamada por atualizarTotais() em carrinho.js.
@@ -166,14 +162,10 @@ function calcularDesconto(subtotal) {
   return 0;
 }
 
-
-/* ----------------------------------------------------------
-   CÁLCULO DO DESCONTO DE FRETE
-   ---------------------------------------------------------- */
+/** CÁLCULO DO DESCONTO DE FRETE */
 /**
  * Retorna o valor do desconto aplicável sobre a taxa de entrega.
  * Chamada por atualizarTotais() em carrinho.js.
- *
  * @returns {number} Valor de desconto de frete em R$
  */
 function calcularDescontoFrete() {
