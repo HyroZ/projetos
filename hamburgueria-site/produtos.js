@@ -143,6 +143,13 @@ function filtrarPorCategoria(categoria) {
     produtosFiltrados.forEach(function (p) { atualizarBotaoProduto(p.id); });
   }
 
+  // Sincroniza aria-labelledby do painel de produtos com a aba ativa
+  var painel = document.getElementById('produtos-panel');
+  if (painel) {
+    var ativo = document.querySelector('.filter-btn[aria-selected="true"]');
+    if (ativo && ativo.id) painel.setAttribute('aria-labelledby', ativo.id);
+  }
+
   // Re-observa animações
   if (typeof reobservarElementos === 'function') reobservarElementos();
 }
