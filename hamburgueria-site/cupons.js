@@ -52,10 +52,7 @@ var CUPONS_DISPONIVEIS = {
   }
 };
 
-
-/* ----------------------------------------------------------
-   APLICAR CUPOM
-   ---------------------------------------------------------- */
+/* APLICAR CUPOM */
 /**
  * Lê o campo de cupom, valida e aplica o desconto.
  * Chamada pelo onclick do botão "Aplicar".

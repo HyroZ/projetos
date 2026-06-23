@@ -22,9 +22,7 @@ function finalizarPedido() {
   var camposObrigatorios = [
     { id: 'clienteNome',      label: 'Nome Completo'   },
     { id: 'clienteTelefone',  label: 'Telefone'        },
-    { id: 'clienteEndereco',  label: 'Endereço'        },
-    { id: 'clienteNumero',    label: 'Número'          },
-    { id: 'clienteBairro',    label: 'Bairro'          }
+    { id: 'clienteNumero',    label: 'Número'          }
   ];
 
   for (var i = 0; i < camposObrigatorios.length; i++) {
@@ -38,11 +36,11 @@ function finalizarPedido() {
     }
   }
 
-  // 4. Verifica bairro de entrega no select
-  var bairroSelect = document.getElementById('bairroSelect');
-  if (!bairroSelect || !bairroSelect.value) {
-    mostrarToast('⚠️ Selecione seu bairro de entrega!', 'error');
-    if (bairroSelect) bairroSelect.focus();
+  // 4. Valida se o CEP foi verificado corretamente
+  if (typeof cepValido === 'undefined' || !cepValido) {
+    mostrarToast('⚠️ Informe um CEP válido para calcular o frete.', 'error');
+    var cepInput = document.getElementById('cepInput');
+    if (cepInput) cepInput.focus();
     return;
   }
 
@@ -88,10 +86,10 @@ function gerarMensagemPedido(formaPagamento) {
   // Dados do cliente
   var nome         = obterValorCampo('clienteNome');
   var telefone     = obterValorCampo('clienteTelefone');
-  var endereco     = obterValorCampo('clienteEndereco');
+  var logradouro   = obterValorCampo('logradouroInput');
   var numero       = obterValorCampo('clienteNumero');
   var complemento  = obterValorCampo('clienteComplemento');
-  var bairro       = obterValorCampo('clienteBairro');
+  var bairro       = obterValorCampo('bairroEncontrado');
 
   // Cálculos
   var subtotal      = calcularSubtotal();
@@ -100,8 +98,8 @@ function gerarMensagemPedido(formaPagamento) {
   var entregaFinal  = Math.max(0, taxaEntrega - descontoFrete);
   var total         = Math.max(0, subtotal - desconto + entregaFinal);
 
-  // Endereço completo
-  var enderecoCompleto = endereco + ', ' + numero;
+  // Endereço completo montado a partir do CEP
+  var enderecoCompleto = logradouro ? logradouro + ', ' + numero : numero;
   if (complemento) enderecoCompleto += ', ' + complemento;
   enderecoCompleto += ' — ' + bairro;
 
@@ -195,10 +193,8 @@ function limparFormularioPedido() {
   var campos = [
     'clienteNome',
     'clienteTelefone',
-    'clienteEndereco',
     'clienteNumero',
     'clienteComplemento',
-    'clienteBairro',
     'trocoValor'
   ];
 

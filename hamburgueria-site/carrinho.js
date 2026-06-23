@@ -1,11 +1,12 @@
-
+﻿
 /* ESTADO DO CARRINHO */
 var carrinho     = [];          // Array de itens { id, nome, preco, imagem, quantidade }
 var taxaEntrega  = 0;           // Taxa de entrega atual (R$)
+var cepValido    = false;       // Indicador de CEP validado com sucesso
 var CART_KEY     = 'artburgers_cart_v1';
 
 
-/* INICIALIZAÇÃO */
+/* INICIALIZAÃ‡ÃƒO */
 /* Carrega o carrinho do localStorage e atualiza a UI */
 function inicializarCarrinho() {
   carregarCarrinhoStorage();
@@ -22,7 +23,7 @@ function carregarCarrinhoStorage() {
       }
     }
   } catch (e) {
-    console.warn('Art Burgers: Não foi possível carregar o carrinho do localStorage.', e);
+    console.warn('Art Burgers: NÃ£o foi possÃ­vel carregar o carrinho do localStorage.', e);
     carrinho = [];
   }
 }
@@ -31,16 +32,16 @@ function salvarCarrinhoStorage() {
   try {
     localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
   } catch (e) {
-    console.warn('Art  Burgers: Não foi possível salvar o carrinho no localStorage.', e);
+    console.warn('Art  Burgers: NÃ£o foi possÃ­vel salvar o carrinho no localStorage.', e);
   }
 }
 
 
-/* OPERAÇÕES DO CARRINHO */
+/* OPERAÃ‡Ã•ES DO CARRINHO */
 
 /**
  * Adiciona um produto ao carrinho.
- * Se já existir, incrementa a quantidade.
+ * Se jÃ¡ existir, incrementa a quantidade.
  */
 function adicionarAoCarrinho(id, nome, preco, imagem) {
   var index = encontrarIndexProduto(id);
@@ -62,7 +63,7 @@ function adicionarAoCarrinho(id, nome, preco, imagem) {
   animarBotaoCarrinho();
   atualizarBotaoProduto(id);
 
-  mostrarToast('🛒 ' + nome + ' adicionado!', 'success');
+  mostrarToast('ðŸ›’ ' + nome + ' adicionado!', 'success');
 }
 
 /**
@@ -108,9 +109,19 @@ function limparCarrinho() {
 
   salvarCarrinhoStorage();
 
-  // Reseta UI do select de bairro
-  var bairroSelect = document.getElementById('bairroSelect');
-  if (bairroSelect) bairroSelect.value = '';
+  // Reseta campo de CEP e endereÃ§o
+  var cepInput      = document.getElementById('cepInput');
+  var logradouroIn  = document.getElementById('logradouroInput');
+  var bairroFoundIn = document.getElementById('bairroEncontrado');
+  var cepFeedback   = document.getElementById('cepFeedback');
+
+  if (cepInput)      cepInput.value = '';
+  if (logradouroIn) logradouroIn.value = '';
+  if (bairroFoundIn) bairroFoundIn.value = '';
+  if (cepFeedback) {
+    cepFeedback.textContent = '';
+    cepFeedback.className   = 'cep-feedback';
+  }
 
   // Reseta campo de cupom
   var cupomInput = document.getElementById('cupomInput');
@@ -135,17 +146,13 @@ function limparCarrinho() {
 }
 
 
-/* ----------------------------------------------------------
-   CÁLCULOS
-   ---------------------------------------------------------- */
-
+/* CÃLCULOS */
 /** Retorna o subtotal (sem entrega e sem desconto) */
 function calcularSubtotal() {
   return carrinho.reduce(function (total, item) {
     return total + (item.preco * item.quantidade);
   }, 0);
 }
-
 /** Retorna o total de itens (somando quantidades) */
 function totalItensCarrinho() {
   return carrinho.reduce(function (acc, item) { return acc + item.quantidade; }, 0);
@@ -153,31 +160,161 @@ function totalItensCarrinho() {
 
 /**
  * Atualiza a taxa de entrega com base no bairro selecionado
- * e sincroniza o campo de bairro no formulário.
+ * e sincroniza o campo de bairro no formulÃ¡rio.
  */
-function atualizarEntrega() {
-  var select = document.getElementById('bairroSelect');
-  if (!select) return;
+function atualizarEntrega(bairro) {
+  if (!bairro || typeof bairro !== 'string' || bairro.trim() === '') {
+    taxaEntrega = 0;
+    cepValido = false;
+    atualizarTotais();
+    return;
+  }
 
-  var option = select.options[select.selectedIndex];
-  taxaEntrega = option && option.dataset.taxa ? parseFloat(option.dataset.taxa) : 0;
+  var bairroNormalizado = normalizarBairro(bairro);
+  taxaEntrega = calcularTaxaPorBairro(bairroNormalizado);
+  cepValido = true;
 
-  // Sincroniza o campo de texto "Bairro" no formulário
+  // Se existir um campo de bairro oculto, atualiza para manter o valor no form
   var bairroInput = document.getElementById('clienteBairro');
-  if (bairroInput && option && option.value) {
-    bairroInput.value = option.text.split(' —')[0].trim();
+  if (bairroInput) {
+    bairroInput.value = bairro;
   }
 
   atualizarTotais();
+}
+
+function normalizarBairro(bairro) {
+  return bairro
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/ç/g, 'c')
+    .replace(/ã/g, 'a')
+    .replace(/é/g, 'e')
+    .replace(/í/g, 'i')
+    .replace(/ó/g, 'o')
+    .replace(/ú/g, 'u')
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function calcularTaxaPorBairro(bairro) {
+  var proximos = new Set([
+    'santa rita i',
+    'santa rita 1',
+    'santa rita ii',
+    'sao judas',
+    'sao jose',
+    'maracana',
+    'jardim olimpico',
+    'delfino magalhaes',
+    'santos reis',
+    'vila exposicao',
+    'monte carmelo'
+  ]);
+
+  var isProximo = proximos.has(bairro);
+  return isProximo ? 3 : 8;
+}
+
+function buscarCep(cep) {
+  var feedback      = document.getElementById('cepFeedback');
+  var logradouroIn  = document.getElementById('logradouroInput');
+  var bairroFoundIn = document.getElementById('bairroEncontrado');
+
+  if (feedback) {
+    feedback.textContent = 'Buscando endereÃ§o...';
+    feedback.className   = 'cep-feedback';
+  }
+
+  fetch('https://viacep.com.br/ws/' + cep + '/json/')
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('NÃ£o foi possÃ­vel consultar o CEP.');
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.erro) {
+        throw new Error('CEP nÃ£o encontrado.');
+      }
+
+      if (logradouroIn)  logradouroIn.value  = data.logradouro || '';
+      if (bairroFoundIn) bairroFoundIn.value = data.bairro || '';
+
+      if (data.bairro) {
+        if (feedback) {
+          feedback.textContent = 'CEP encontrado. Bairro identificado automaticamente.';
+          feedback.className   = 'cep-feedback success';
+        }
+        atualizarEntrega(data.bairro);
+      } else {
+        if (feedback) {
+          feedback.textContent = 'CEP encontrado, mas o bairro nÃ£o foi retornado. Frete padrÃ£o aplicado.';
+          feedback.className   = 'cep-feedback error';
+        }
+        atualizarEntrega('');
+      }
+    })
+    .catch(function (error) {
+      limparEnderecoCep();
+      if (feedback) {
+        feedback.textContent = 'CEP invÃ¡lido ou nÃ£o encontrado. Verifique e tente novamente.';
+        feedback.className   = 'cep-feedback error';
+      }
+    });
+}
+
+function limparEnderecoCep() {
+  var logradouroIn  = document.getElementById('logradouroInput');
+  var bairroFoundIn = document.getElementById('bairroEncontrado');
+
+  if (logradouroIn)  logradouroIn.value  = '';
+  if (bairroFoundIn) bairroFoundIn.value = '';
+
+  taxaEntrega = 0;
+  cepValido  = false;
+  atualizarTotais();
+}
+
+function formatarCep(event) {
+  var input = event.target;
+  var valor = input.value.replace(/\D/g, '');
+
+  if (valor.length > 5) {
+    valor = valor.slice(0, 5) + '-' + valor.slice(5, 8);
+  }
+
+  input.value = valor;
+
+  var feedback = document.getElementById('cepFeedback');
+  if (valor.length === 9) {
+    if (feedback) {
+      feedback.textContent = 'Consultando CEP...';
+      feedback.className   = 'cep-feedback';
+    }
+    buscarCep(valor);
+    return;
+  }
+
+  if (cepValido) {
+    limparEnderecoCep();
+  }
+
+  if (feedback) {
+    feedback.textContent = 'Digite o CEP completo para consultar.';
+    feedback.className   = 'cep-feedback';
+  }
 }
 
 /** Recalcula e atualiza os valores exibidos no resumo */
 function atualizarTotais() {
   var subtotal = calcularSubtotal();
 
-  // Desconto de produto (% ou fixo) — definido em cupons.js
+  // Desconto de produto (% ou fixo) â€” definido em cupons.js
   var desconto      = (typeof calcularDesconto      === 'function') ? calcularDesconto(subtotal) : 0;
-  // Desconto de frete — definido em cupons.js
+  // Desconto de frete â€” definido em cupons.js
   var descontoFrete = (typeof calcularDescontoFrete === 'function') ? calcularDescontoFrete()    : 0;
 
   var entregaFinal = Math.max(0, taxaEntrega - descontoFrete);
@@ -197,7 +334,7 @@ function atualizarTotais() {
   if (elEntrega) {
     elEntrega.textContent = (taxaEntrega === 0 && entregaFinal === 0)
       ? 'A calcular'
-      : (entregaFinal === 0 ? 'Grátis 🎉' : formatarMoeda(entregaFinal));
+      : (entregaFinal === 0 ? 'GrÃ¡tis ðŸŽ‰' : formatarMoeda(entregaFinal));
   }
 
   // Linha de desconto
@@ -205,7 +342,7 @@ function atualizarTotais() {
     var descontoTotal = desconto + descontoFrete;
     if (descontoTotal > 0) {
       elDescontoRow.style.display = 'flex';
-      elDesconto.textContent      = '— ' + formatarMoeda(descontoTotal);
+      elDesconto.textContent      = 'â€” ' + formatarMoeda(descontoTotal);
     } else {
       elDescontoRow.style.display = 'none';
     }
@@ -213,18 +350,16 @@ function atualizarTotais() {
 }
 
 
-/* ----------------------------------------------------------
-   RENDERIZAÇÃO DA UI DO CARRINHO
-   ---------------------------------------------------------- */
+/* RENDERIZAÃ‡ÃƒO DA UI DO CARRINHO */
 
 /**
  * Atualiza todos os elementos da interface do carrinho:
- * badge, lista de itens, seções visíveis, totais.
+ * badge, lista de itens, seÃ§Ãµes visÃ­veis, totais.
  */
 function atualizarCarrinhoUI() {
   var totalItens = totalItensCarrinho();
 
-  // ---- Badge do ícone ----
+  // ---- Badge do Ã­cone ----
   var badge = document.getElementById('cartBadge');
   if (badge) {
     badge.textContent = totalItens;
@@ -235,7 +370,7 @@ function atualizarCarrinhoUI() {
     }
   }
 
-  // ---- Elementos que dependem de o carrinho estar vazio ou não ----
+  // ---- Elementos que dependem de o carrinho estar vazio ou nÃ£o ----
   var elEmpty    = document.getElementById('cartEmpty');
   var elItems    = document.getElementById('cartItems');
   var elCoupon   = document.getElementById('cartCoupon');
@@ -243,7 +378,7 @@ function atualizarCarrinhoUI() {
   var elSummary  = document.getElementById('cartSummary');
   var elForm     = document.getElementById('cartForm');
 
-  if (!elItems) return; // Se o DOM do carrinho não existir, encerra
+  if (!elItems) return; // Se o DOM do carrinho nÃ£o existir, encerra
 
   if (carrinho.length === 0) {
     // --- Estado vazio ---
@@ -289,7 +424,7 @@ function renderizarItemCarrinho(item) {
       '<div class="cart-item-price">' + formatarMoeda(item.preco) + ' cada</div>' +
       '<div class="cart-item-controls">' +
         '<button class="qty-btn" onclick="alterarQuantidade(' + item.id + ', -1)" ' +
-                'aria-label="Diminuir quantidade de ' + item.nome + '">−</button>' +
+                'aria-label="Diminuir quantidade de ' + item.nome + '">âˆ’</button>' +
         '<span class="qty-value">' + item.quantidade + '</span>' +
         '<button class="qty-btn" onclick="alterarQuantidade(' + item.id + ', 1)" ' +
                 'aria-label="Aumentar quantidade de ' + item.nome + '">+</button>' +
@@ -298,15 +433,13 @@ function renderizarItemCarrinho(item) {
     '<div class="cart-item-subtotal">' +
       '<span>' + formatarMoeda(subtotalItem) + '</span>' +
       '<button class="remove-btn" onclick="removerDoCarrinho(' + item.id + ')" ' +
-              'aria-label="Remover ' + item.nome + ' do carrinho">✕</button>' +
+              'aria-label="Remover ' + item.nome + ' do carrinho">âœ•</button>' +
     '</div>' +
   '</div>';
 }
 
 
-/* ----------------------------------------------------------
-   ABRIR / FECHAR SIDEBAR
-   ---------------------------------------------------------- */
+/* ABRIR / FECHAR SIDEBAR */
 function abrirCarrinho() {
   var sidebar = document.getElementById('cartSidebar');
   var overlay = document.getElementById('cartOverlay');
@@ -335,7 +468,7 @@ function fecharCarrinho() {
     overlay.setAttribute('aria-hidden', 'true');
   }
 
-  // Só libera o overflow se o menu mobile também estiver fechado
+  // SÃ³ libera o overflow se o menu mobile tambÃ©m estiver fechado
   var navLinks = document.getElementById('navLinks');
   if (!navLinks || !navLinks.classList.contains('open')) {
     document.body.style.overflow = '';
@@ -344,10 +477,10 @@ function fecharCarrinho() {
 
 
 /* ----------------------------------------------------------
-   BOTÃO DO PRODUTO — ATUALIZA ESTADO NO GRID
+   BOTÃƒO DO PRODUTO â€” ATUALIZA ESTADO NO GRID
    ---------------------------------------------------------- */
 /**
- * Atualiza o botão "Adicionar" de um produto com base no carrinho atual.
+ * Atualiza o botÃ£o "Adicionar" de um produto com base no carrinho atual.
  * Se o item estiver no carrinho, exibe a quantidade e muda a cor.
  * @param {number} id - ID do produto
  */
@@ -381,7 +514,7 @@ function atualizarBotaoProduto(id) {
 
 
 /* ----------------------------------------------------------
-   ANIMAÇÃO DO ÍCONE DO CARRINHO
+   ANIMAÃ‡ÃƒO DO ÃCONE DO CARRINHO
    ---------------------------------------------------------- */
 function animarBotaoCarrinho() {
   var btn = document.getElementById('cartBtn');
@@ -404,10 +537,11 @@ function encontrarIndexProduto(id) {
   return -1;
 }
 
-/** Helper de formatação de moeda (reutiliza o do app.js se disponível) */
+/** Helper de formataÃ§Ã£o de moeda (reutiliza o do app.js se disponÃ­vel) */
 function formatarMoeda(valor) {
   if (typeof window.formatarMoeda === 'function') {
     return window.formatarMoeda(valor);
   }
   return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
+

@@ -175,7 +175,7 @@
             <div class="feature-item">
               <span class="feature-icon" aria-hidden="true">🥩</span>
               <div class="feature-info">
-                <strong>Blend Exclusivo</strong>
+                <strong>Blend Exclusivo</strong>  
                 <p>Carne fresca selecionada diariamente</p>
               </div>
             </div>
@@ -224,8 +224,7 @@
 
 
   <!-- =========================================
-       DESTAQUES / PROMOÇÕES
-  ========================================= -->
+       DESTAQUES / PROMOÇÕES -->
   <section class="destaques" id="promocoes" aria-label="Produtos em destaque">
     <div class="container">
       <div class="section-header reveal">
@@ -530,17 +529,39 @@
         <div class="coupon-feedback" id="cupomFeedback" aria-live="polite"></div>
       </div>
 
-      <!-- Seleção de Bairro -->
+      <!-- Campo de CEP e endereço -->
       <div class="cart-delivery" id="cartDelivery" style="display:none">
-        <h3 class="cart-section-title">🏠 Bairro de Entrega</h3>
-        <select id="bairroSelect" onchange="atualizarEntrega()" aria-label="Selecione seu bairro para calcular a taxa de entrega">
-          <option value="">Selecione seu bairro...</option>
-          <option value="centro"       data-taxa="5">Centro — R$ 5,00</option>
-          <option value="major_prates" data-taxa="7">Major Prates — R$ 7,00</option>
-          <option value="todos_santos" data-taxa="8">Todos os Santos — R$ 8,00</option>
-          <option value="morada_sol"   data-taxa="10">Morada do Sol — R$ 10,00</option>
-          <option value="outros"       data-taxa="12">Outros bairros — R$ 12,00</option>
-        </select>
+        <h3 class="cart-section-title">🏠 Calcular entrega pelo CEP</h3>
+
+        <div class="form-group">
+          <label for="cepInput">CEP</label>
+          <input
+            type="text"
+            id="cepInput"
+            placeholder="00000-000"
+            aria-label="Digite seu CEP para calcular a entrega"
+            maxlength="9"
+            autocomplete="postal-code"
+            oninput="formatarCep(event)"
+          >
+          <div class="cep-feedback" id="cepFeedback" aria-live="polite"></div>
+        </div>
+
+        <div class="cart-cep-info" aria-live="polite">
+          <div class="cep-row">
+            <div class="cep-item">
+              <label for="logradouroInput">Logradouro</label>
+              <input type="text" id="logradouroInput" readonly>
+            </div>
+            <div class="cep-item">
+              <label for="bairroEncontrado">Bairro identificado</label>
+              <input type="text" id="bairroEncontrado" readonly>
+            </div>
+          </div>
+          <div class="cep-status-row">
+            <span id="cepFreteInfo">Frete: A calcular</span>
+          </div>
+        </div>
       </div>
 
       <!-- Resumo de valores -->
@@ -568,16 +589,12 @@
         <h3 class="cart-section-title">📋 Seus Dados</h3>
 
         <div class="form-group">
-          <label for="clienteNome">Nome Completo <span aria-hidden="true">*</span></label>
+          <label for="clienteNome">Nome <span aria-hidden="true">*</span></label>
           <input type="text"  id="clienteNome"      placeholder="Seu nome completo"   autocomplete="name"           required>
         </div>
         <div class="form-group">
           <label for="clienteTelefone">Telefone <span aria-hidden="true">*</span></label>
           <input type="tel"   id="clienteTelefone"  placeholder="(38) 99999-9999"    autocomplete="tel"            required>
-        </div>
-        <div class="form-group">
-          <label for="clienteEndereco">Endereço <span aria-hidden="true">*</span></label>
-          <input type="text"  id="clienteEndereco"  placeholder="Rua, Avenida..." autocomplete="address-line1" required>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -589,11 +606,6 @@
             <input type="text" id="clienteComplemento" placeholder="Apto, Bloco...">
           </div>
         </div>
-        <div class="form-group">
-          <label for="clienteBairro">Bairro <span aria-hidden="true">*</span></label>
-          <input type="text" id="clienteBairro" placeholder="Seu bairro" required>
-        </div>
-
         <!-- Pagamento -->
         <div class="payment-section">
           <h3 class="cart-section-title">💳 Forma de Pagamento</h3>
