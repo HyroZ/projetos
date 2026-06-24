@@ -2,7 +2,9 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Minha Carteira - Controle de gastos pessoais">
+    <meta name="theme-color" content="#EA7777">
     <title>Minha Carteira</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Pacifico&display=swap">
     <link rel="stylesheet" href="styleC.css">
@@ -16,30 +18,28 @@
     <div class="container">
         <h2>Calculadora</h2>
         <div class="calculadora">
-            <input type="text" id="resultado" oninput="this.value = this.value.replace(/[^0-9+\-*/ ]/g, '')">
-            <br>
+            <input type="text" id="resultado" placeholder="0" oninput="this.value = this.value.replace(/[^0-9+\-*/ ]/g, '')">
             <input type="button" value="1" onclick="inserir(1)">
             <input type="button" value="2" onclick="inserir(2)">
             <input type="button" value="3" onclick="inserir(3)">
             <input type="button" value="+" onclick="operacao('+')">
-            <br>
             <input type="button" value="4" onclick="inserir(4)">
             <input type="button" value="5" onclick="inserir(5)">
             <input type="button" value="6" onclick="inserir(6)">
             <input type="button" value="-" onclick="operacao('-')">
-            <br>
             <input type="button" value="7" onclick="inserir(7)">
             <input type="button" value="8" onclick="inserir(8)">
             <input type="button" value="9" onclick="inserir(9)">
             <input type="button" value="*" onclick="operacao('*')">
-            <br>
             <input type="button" value="0" onclick="inserir(0)">
             <input type="button" value="C" onclick="limpar()">
             <input type="button" value="=" onclick="calcular()">
             <input type="button" value="/" onclick="operacao('/')">
         </div>
-    </div>/
+    </div>
+
     <div class="table-container">
+        <h2>Controle de Gastos</h2>
         <table>
             <thead>
                 <tr>
@@ -52,13 +52,13 @@
                     <th>Item</th>
                     <th>Nome</th>
                     <th>Valor</th>
-                    <th>Vencimento</th>
+                    <th>Venc.</th>
                     <th>Situação</th>
                     <th>Valor</th>
-                    <th>Vencimento</th>
+                    <th>Venc.</th>
                     <th>Situação</th>
                     <th>Valor</th>
-                    <th>Vencimento</th>
+                    <th>Venc.</th>
                     <th>Situação</th>
                 </tr>
             </thead>
@@ -133,20 +133,20 @@
                     <td class="em-aberto">Em Aberto</td>
                 </tr>
 
-                <tr height="30%" align="center" bgcolor="white">
+                <tr style="background-color: #f0f0f0;">
+                    <td colspan="2"><strong>TOTAL</strong></td>
+                    <th style="background-color: limegreen; color: white;">R$ 1.700,00</th>
                     <td colspan="2"></td>
-                    <th bgcolor="limegreen">R$ 1.700,00</th>
+                    <th style="background-color: limegreen; color: white;">R$ 1.490,00</th>
                     <td colspan="2"></td>
-                    <th bgcolor="limegreen">R$ 1.490,00</th>
-                    <td colspan="2"></td>
-                    <th bgcolor="limegreen">R$ 2.030,00</th>
+                    <th style="background-color: limegreen; color: white;">R$ 2.030,00</th>
                     <td colspan="2"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <footer style="background: #EA7777; padding: 20px 50px; color: #fff; margin-top: 100px;">
+    <footer>
         <h3>
             Minha Carteira - Controle de Gastos Pessoais <br>| Desenvolvido por Josué B Soares | &copy; 2026 
         </h3>
