@@ -1,7 +1,7 @@
 /* Geração da mensagem de pedido e integração com WhatsApp */
 
 /* CONFIGURAÇÃO */
-var WHATSAPP_NUMERO = '553892610825'; // Número da hamburgueria com DDI
+var WHATSAPP_NUMERO = '99999999'; // Número da hamburgueria com DDI
 
 /* FINALIZAR PEDIDO (chamada pelo botão) */
 /**

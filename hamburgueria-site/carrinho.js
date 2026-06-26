@@ -3,7 +3,7 @@
 var carrinho     = [];          // Array de itens { id, nome, preco, imagem, quantidade }
 var taxaEntrega  = 0;           // Taxa de entrega atual (R$)
 var cepValido    = false;       // Indicador de CEP validado com sucesso
-var CART_KEY     = 'artburgers_cart_v1';
+var CART_KEY     = 'testburguers_cart_v1';
 
 
 /* INICIALIZAÃ‡ÃƒO */
@@ -23,7 +23,7 @@ function carregarCarrinhoStorage() {
       }
     }
   } catch (e) {
-    console.warn('Art Burgers: NÃ£o foi possÃ­vel carregar o carrinho do localStorage.', e);
+    console.warn('Test burguers: Não foi possível carregar o carrinho do localStorage.', e);
     carrinho = [];
   }
 }
@@ -32,7 +32,7 @@ function salvarCarrinhoStorage() {
   try {
     localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
   } catch (e) {
-    console.warn('Art  Burgers: NÃ£o foi possÃ­vel salvar o carrinho no localStorage.', e);
+    console.warn('Test burguers: Não foi possível salvar o carrinho no localStorage.', e);
   }
 }
 
