@@ -1,5 +1,5 @@
 /* 
-   ARTE BURGERS — app.js
+   TEST BURGERS — app.js
    Orquestração principal da aplicação
    Inicialização, Navbar, Scroll, Animações, Utilitários
 */

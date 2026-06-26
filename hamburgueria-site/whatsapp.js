@@ -117,7 +117,7 @@ function gerarMensagemPedido(formaPagamento) {
 
   // Monta a mensagem
   var msg = '';
-  msg += '🍔 *NOVO PEDIDO — ARTE BURGERS* 🍔\n';
+  msg += '🍔 *NOVO PEDIDO — TEST BURGERS* 🍔\n';
   msg += '━━━━━━━━━━━━━━━━━━━━━━\n';
   msg += '👤 *Cliente:* ' + nome + '\n';
   msg += '📱 *Telefone:* ' + telefone + '\n';
@@ -163,7 +163,7 @@ function gerarMensagemPedido(formaPagamento) {
 
   msg += '━━━━━━━━━━━━━━━━━━━━━━\n';
   msg += '📅 *Data:* ' + dataHoje + ' às ' + horario + '\n';
-  msg += '\n_Pedido realizado pelo site Arte Burgers_ 🔥';
+  msg += '\n_Pedido realizado pelo site Test Burgers_ 🔥';
 
   return msg;
 }

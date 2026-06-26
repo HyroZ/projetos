@@ -1,8 +1,8 @@
-/* ==========================================================
-   ARTE BURGERS — cupons.js
+/* 
+   TEST BURGERS — cupons.js
    Sistema completo de cupons de desconto
    Tipos: percentual, fixo e frete grátis
-   ========================================================== */
+*/
 
 /* ----------------------------------------------------------
    ESTADO
@@ -17,7 +17,7 @@ var cupomAtivo = null; // { codigo, tipo, valor, descricao } ou null
 var CUPONS_DISPONIVEIS = {
 
   // 10% de desconto no subtotal
-  'ARTE10': {
+  'TEST10': {
     tipo: 'percentual',
     valor: 10,
     descricao: '10% de desconto no pedido'

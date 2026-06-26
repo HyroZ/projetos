@@ -1,5 +1,5 @@
 /* ==========================================================
-   ARTE BURGERS — produtos.js
+   TEST BURGERS — produtos.js
    Carrega produtos de produtos.json e renderiza o grid
    ========================================================== */
 
