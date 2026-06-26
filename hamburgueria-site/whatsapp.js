@@ -20,14 +20,14 @@ function finalizarPedido() {
 
   // 3. Valida campos obrigatórios
   var camposObrigatorios = [
-    { id: 'clienteNome',      label: 'Nome Completo'   },
-    { id: 'clienteTelefone',  label: 'Telefone'        },
-    { id: 'clienteNumero',    label: 'Número'          }
+    { id: 'clienteNome', label: 'Nome Completo' },
+    { id: 'clienteTelefone', label: 'Telefone' },
+    { id: 'clienteNumero', label: 'Número' }
   ];
 
   for (var i = 0; i < camposObrigatorios.length; i++) {
-    var campo  = camposObrigatorios[i];
-    var el     = document.getElementById(campo.id);
+    var campo = camposObrigatorios[i];
+    var el = document.getElementById(campo.id);
     if (!el || el.value.trim() === '') {
       marcarCampoErro(el);
       mostrarToast('⚠️ Preencha o campo: ' + campo.label, 'error');
@@ -56,7 +56,7 @@ function finalizarPedido() {
 
   // 6. Gera e envia a mensagem
   var mensagem = gerarMensagemPedido(pagamentoEl.value);
-  var url      = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(mensagem);
+  var url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(mensagem);
 
   // Abre o WhatsApp em nova aba
   window.open(url, '_blank');
@@ -84,19 +84,19 @@ function finalizarPedido() {
  */
 function gerarMensagemPedido(formaPagamento) {
   // Dados do cliente
-  var nome         = obterValorCampo('clienteNome');
-  var telefone     = obterValorCampo('clienteTelefone');
-  var logradouro   = obterValorCampo('logradouroInput');
-  var numero       = obterValorCampo('clienteNumero');
-  var complemento  = obterValorCampo('clienteComplemento');
-  var bairro       = obterValorCampo('bairroEncontrado');
+  var nome = obterValorCampo('clienteNome');
+  var telefone = obterValorCampo('clienteTelefone');
+  var logradouro = obterValorCampo('logradouroInput');
+  var numero = obterValorCampo('clienteNumero');
+  var complemento = obterValorCampo('clienteComplemento');
+  var bairro = obterValorCampo('bairroEncontrado');
 
   // Cálculos
-  var subtotal      = calcularSubtotal();
-  var desconto      = (typeof calcularDesconto      === 'function') ? calcularDesconto(subtotal) : 0;
-  var descontoFrete = (typeof calcularDescontoFrete === 'function') ? calcularDescontoFrete()    : 0;
-  var entregaFinal  = Math.max(0, taxaEntrega - descontoFrete);
-  var total         = Math.max(0, subtotal - desconto + entregaFinal);
+  var subtotal = calcularSubtotal();
+  var desconto = (typeof calcularDesconto === 'function') ? calcularDesconto(subtotal) : 0;
+  var descontoFrete = (typeof calcularDescontoFrete === 'function') ? calcularDescontoFrete() : 0;
+  var entregaFinal = Math.max(0, taxaEntrega - descontoFrete);
+  var total = Math.max(0, subtotal - desconto + entregaFinal);
 
   // Endereço completo montado a partir do CEP
   var enderecoCompleto = logradouro ? logradouro + ', ' + numero : numero;
@@ -107,12 +107,12 @@ function gerarMensagemPedido(formaPagamento) {
   var itensFormatados = carrinho.map(function (item) {
     var subtotalItem = item.preco * item.quantidade;
     return '  ' + item.quantidade + 'x ' + item.nome +
-           ' (' + formatarMoeda(item.preco) + ') = ' + formatarMoeda(subtotalItem);
+      ' (' + formatarMoeda(item.preco) + ') = ' + formatarMoeda(subtotalItem);
   }).join('\n');
 
   // Horário atual
-  var agora    = new Date();
-  var horario  = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  var agora = new Date();
+  var horario = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
   var dataHoje = agora.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
   // Monta a mensagem
@@ -150,7 +150,7 @@ function gerarMensagemPedido(formaPagamento) {
     var trocoEl = document.getElementById('trocoValor');
     if (trocoEl && trocoEl.value && parseFloat(trocoEl.value) > 0) {
       var trocoParaQuanto = parseFloat(trocoEl.value);
-      var trocoValor      = trocoParaQuanto - total;
+      var trocoValor = trocoParaQuanto - total;
       msg += '💵 *Troco para:* ' + formatarMoeda(trocoParaQuanto);
       if (trocoValor > 0) {
         msg += ' *(troco: ' + formatarMoeda(trocoValor) + ')*';
@@ -174,7 +174,7 @@ function gerarMensagemPedido(formaPagamento) {
  */
 function verificarPagamento() {
   var pagamentoEl = document.querySelector('input[name="pagamento"]:checked');
-  var trocoField  = document.getElementById('trocoField');
+  var trocoField = document.getElementById('trocoField');
 
   if (!trocoField) return;
   if (pagamentoEl && pagamentoEl.value === 'DINHEIRO') {

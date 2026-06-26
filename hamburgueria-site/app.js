@@ -38,18 +38,18 @@ function inicializarApp() {
 
 /* EVENTOS DO CARRINHO */
 function vincularEventosCarrinho() {
-  const cartBtn     = document.getElementById('cartBtn');
-  const cartClose   = document.getElementById('cartClose');
+  const cartBtn = document.getElementById('cartBtn');
+  const cartClose = document.getElementById('cartClose');
   const cartOverlay = document.getElementById('cartOverlay');
 
-  if (cartBtn)     cartBtn.addEventListener('click', abrirCarrinho);
-  if (cartClose)   cartClose.addEventListener('click', fecharCarrinho);
+  if (cartBtn) cartBtn.addEventListener('click', abrirCarrinho);
+  if (cartClose) cartClose.addEventListener('click', fecharCarrinho);
   if (cartOverlay) cartOverlay.addEventListener('click', fecharCarrinho);
 }
 
 /* NAVBAR — scroll + link ativo */
 function inicializarNavbar() {
-  const navbar   = document.getElementById('navbar');
+  const navbar = document.getElementById('navbar');
   const sections = document.querySelectorAll('section[id]');
 
   if (!navbar) return;
@@ -76,10 +76,10 @@ function destacarLinkAtivo(sections) {
   const scrollY = window.scrollY + 100;
 
   sections.forEach(function (section) {
-    const sectionTop    = section.offsetTop;
+    const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
-    const sectionId     = section.getAttribute('id');
-    const link          = document.querySelector('.nav-link[href="#' + sectionId + '"]');
+    const sectionId = section.getAttribute('id');
+    const link = document.querySelector('.nav-link[href="#' + sectionId + '"]');
 
     if (!link) return;
 
@@ -95,14 +95,14 @@ function destacarLinkAtivo(sections) {
 /* MENU HAMBÚRGUER (MOBILE) */
 function inicializarHamburger() {
   const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const navOverlay   = document.getElementById('navOverlay');
+  const navOverlay = document.getElementById('navOverlay');
 
   if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
-  if (navOverlay)   navOverlay.addEventListener('click', fecharMenu);
+  if (navOverlay) navOverlay.addEventListener('click', fecharMenu);
 }
 
 function toggleMenu() {
-  const navLinks     = document.getElementById('navLinks');
+  const navLinks = document.getElementById('navLinks');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
 
   if (!navLinks) return;
@@ -117,11 +117,11 @@ function toggleMenu() {
 }
 
 function abrirMenu() {
-  const navLinks     = document.getElementById('navLinks');
+  const navLinks = document.getElementById('navLinks');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const navOverlay   = document.getElementById('navOverlay');
+  const navOverlay = document.getElementById('navOverlay');
 
-  if (navLinks)     navLinks.classList.add('open');
+  if (navLinks) navLinks.classList.add('open');
   if (hamburgerBtn) {
     hamburgerBtn.classList.add('active');
     hamburgerBtn.setAttribute('aria-expanded', 'true');
@@ -134,11 +134,11 @@ function abrirMenu() {
 }
 
 function fecharMenu() {
-  const navLinks     = document.getElementById('navLinks');
+  const navLinks = document.getElementById('navLinks');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const navOverlay   = document.getElementById('navOverlay');
+  const navOverlay = document.getElementById('navOverlay');
 
-  if (navLinks)     navLinks.classList.remove('open');
+  if (navLinks) navLinks.classList.remove('open');
   if (hamburgerBtn) {
     hamburgerBtn.classList.remove('active');
     hamburgerBtn.setAttribute('aria-expanded', 'false');
@@ -181,8 +181,8 @@ function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
 
-  const navH       = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 76;
-  const offsetTop  = el.getBoundingClientRect().top + window.scrollY - navH - 8;
+  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 76;
+  const offsetTop = el.getBoundingClientRect().top + window.scrollY - navH - 8;
 
   window.scrollTo({ top: offsetTop, behavior: 'smooth' });
 }
@@ -226,7 +226,7 @@ function inicializarScrollReveal() {
       });
     },
     {
-      threshold:   0.12,
+      threshold: 0.12,
       rootMargin: '0px 0px -48px 0px'
     }
   );
@@ -299,7 +299,7 @@ let toastTimer = null;
  * @param {number} duracao   - Duração em ms (padrão: 3000)
  */
 function mostrarToast(mensagem, tipo, duracao) {
-  tipo    = tipo    || 'success';
+  tipo = tipo || 'success';
   duracao = duracao || 3000;
 
   const toast = document.getElementById('toast');
@@ -309,7 +309,7 @@ function mostrarToast(mensagem, tipo, duracao) {
   if (toastTimer) clearTimeout(toastTimer);
 
   toast.textContent = mensagem;
-  toast.className   = 'toast toast-' + tipo + ' show';
+  toast.className = 'toast toast-' + tipo + ' show';
 
   toastTimer = setTimeout(function () {
     toast.classList.remove('show');
@@ -324,7 +324,7 @@ function mostrarToast(mensagem, tipo, duracao) {
  */
 function formatarMoeda(valor) {
   return valor.toLocaleString('pt-BR', {
-    style:    'currency',
+    style: 'currency',
     currency: 'BRL'
   });
 }
@@ -333,7 +333,7 @@ function formatarMoeda(valor) {
 function debounce(fn, espera) {
   let timer;
   return function () {
-    const args    = arguments;
+    const args = arguments;
     const contexto = this;
     clearTimeout(timer);
     timer = setTimeout(function () {

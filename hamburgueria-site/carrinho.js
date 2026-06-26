@@ -1,9 +1,9 @@
 ﻿
 /* ESTADO DO CARRINHO */
-var carrinho     = [];          // Array de itens { id, nome, preco, imagem, quantidade }
-var taxaEntrega  = 0;           // Taxa de entrega atual (R$)
-var cepValido    = false;       // Indicador de CEP validado com sucesso
-var CART_KEY     = 'testburguers_cart_v1';
+var carrinho = [];          // Array de itens { id, nome, preco, imagem, quantidade }
+var taxaEntrega = 0;           // Taxa de entrega atual (R$)
+var cepValido = false;       // Indicador de CEP validado com sucesso
+var CART_KEY = 'testburguers_cart_v1';
 
 
 /* INICIALIZAÃ‡ÃƒO */
@@ -50,10 +50,10 @@ function adicionarAoCarrinho(id, nome, preco, imagem) {
     carrinho[index].quantidade++;
   } else {
     carrinho.push({
-      id:         id,
-      nome:       nome,
-      preco:      parseFloat(preco),
-      imagem:     imagem,
+      id: id,
+      nome: nome,
+      preco: parseFloat(preco),
+      imagem: imagem,
       quantidade: 1
     });
   }
@@ -101,8 +101,8 @@ function alterarQuantidade(id, delta) {
  * Limpa todo o carrinho
  */
 function limparCarrinho() {
-  carrinho     = [];
-  taxaEntrega  = 0;
+  carrinho = [];
+  taxaEntrega = 0;
 
   // Reseta cupom (definido em cupons.js)
   if (typeof cupomAtivo !== 'undefined') cupomAtivo = null;
@@ -110,36 +110,36 @@ function limparCarrinho() {
   salvarCarrinhoStorage();
 
   // Reseta campo de CEP e endereÃ§o
-  var cepInput      = document.getElementById('cepInput');
-  var logradouroIn  = document.getElementById('logradouroInput');
+  var cepInput = document.getElementById('cepInput');
+  var logradouroIn = document.getElementById('logradouroInput');
   var bairroFoundIn = document.getElementById('bairroEncontrado');
-  var cepFeedback   = document.getElementById('cepFeedback');
+  var cepFeedback = document.getElementById('cepFeedback');
 
-  if (cepInput)      cepInput.value = '';
+  if (cepInput) cepInput.value = '';
   if (logradouroIn) logradouroIn.value = '';
   if (bairroFoundIn) bairroFoundIn.value = '';
   if (cepFeedback) {
     cepFeedback.textContent = '';
-    cepFeedback.className   = 'cep-feedback';
+    cepFeedback.className = 'cep-feedback';
   }
 
   // Reseta campo de cupom
   var cupomInput = document.getElementById('cupomInput');
   if (cupomInput) {
-    cupomInput.value    = '';
+    cupomInput.value = '';
     cupomInput.disabled = false;
   }
 
   var cupomBtn = document.getElementById('cupomBtn');
   if (cupomBtn) {
-    cupomBtn.textContent  = 'Aplicar';
-    cupomBtn.onclick      = aplicarCupom;
+    cupomBtn.textContent = 'Aplicar';
+    cupomBtn.onclick = aplicarCupom;
   }
 
   var cupomFeedback = document.getElementById('cupomFeedback');
   if (cupomFeedback) {
     cupomFeedback.textContent = '';
-    cupomFeedback.className   = 'coupon-feedback';
+    cupomFeedback.className = 'coupon-feedback';
   }
 
   atualizarCarrinhoUI();
@@ -219,13 +219,13 @@ function calcularTaxaPorBairro(bairro) {
 }
 
 function buscarCep(cep) {
-  var feedback      = document.getElementById('cepFeedback');
-  var logradouroIn  = document.getElementById('logradouroInput');
+  var feedback = document.getElementById('cepFeedback');
+  var logradouroIn = document.getElementById('logradouroInput');
   var bairroFoundIn = document.getElementById('bairroEncontrado');
 
   if (feedback) {
     feedback.textContent = 'Buscando endereÃ§o...';
-    feedback.className   = 'cep-feedback';
+    feedback.className = 'cep-feedback';
   }
 
   fetch('https://viacep.com.br/ws/' + cep + '/json/')
@@ -240,19 +240,19 @@ function buscarCep(cep) {
         throw new Error('CEP nÃ£o encontrado.');
       }
 
-      if (logradouroIn)  logradouroIn.value  = data.logradouro || '';
+      if (logradouroIn) logradouroIn.value = data.logradouro || '';
       if (bairroFoundIn) bairroFoundIn.value = data.bairro || '';
 
       if (data.bairro) {
         if (feedback) {
           feedback.textContent = 'CEP encontrado. Bairro identificado automaticamente.';
-          feedback.className   = 'cep-feedback success';
+          feedback.className = 'cep-feedback success';
         }
         atualizarEntrega(data.bairro);
       } else {
         if (feedback) {
           feedback.textContent = 'CEP encontrado, mas o bairro nÃ£o foi retornado. Frete padrÃ£o aplicado.';
-          feedback.className   = 'cep-feedback error';
+          feedback.className = 'cep-feedback error';
         }
         atualizarEntrega('');
       }
@@ -261,20 +261,20 @@ function buscarCep(cep) {
       limparEnderecoCep();
       if (feedback) {
         feedback.textContent = 'CEP invÃ¡lido ou nÃ£o encontrado. Verifique e tente novamente.';
-        feedback.className   = 'cep-feedback error';
+        feedback.className = 'cep-feedback error';
       }
     });
 }
 
 function limparEnderecoCep() {
-  var logradouroIn  = document.getElementById('logradouroInput');
+  var logradouroIn = document.getElementById('logradouroInput');
   var bairroFoundIn = document.getElementById('bairroEncontrado');
 
-  if (logradouroIn)  logradouroIn.value  = '';
+  if (logradouroIn) logradouroIn.value = '';
   if (bairroFoundIn) bairroFoundIn.value = '';
 
   taxaEntrega = 0;
-  cepValido  = false;
+  cepValido = false;
   atualizarTotais();
 }
 
@@ -292,7 +292,7 @@ function formatarCep(event) {
   if (valor.length === 9) {
     if (feedback) {
       feedback.textContent = 'Consultando CEP...';
-      feedback.className   = 'cep-feedback';
+      feedback.className = 'cep-feedback';
     }
     buscarCep(valor);
     return;
@@ -304,7 +304,7 @@ function formatarCep(event) {
 
   if (feedback) {
     feedback.textContent = 'Digite o CEP completo para consultar.';
-    feedback.className   = 'cep-feedback';
+    feedback.className = 'cep-feedback';
   }
 }
 
@@ -313,22 +313,22 @@ function atualizarTotais() {
   var subtotal = calcularSubtotal();
 
   // Desconto de produto (% ou fixo) â€” definido em cupons.js
-  var desconto      = (typeof calcularDesconto      === 'function') ? calcularDesconto(subtotal) : 0;
+  var desconto = (typeof calcularDesconto === 'function') ? calcularDesconto(subtotal) : 0;
   // Desconto de frete â€” definido em cupons.js
-  var descontoFrete = (typeof calcularDescontoFrete === 'function') ? calcularDescontoFrete()    : 0;
+  var descontoFrete = (typeof calcularDescontoFrete === 'function') ? calcularDescontoFrete() : 0;
 
   var entregaFinal = Math.max(0, taxaEntrega - descontoFrete);
-  var total        = Math.max(0, subtotal - desconto + entregaFinal);
+  var total = Math.max(0, subtotal - desconto + entregaFinal);
 
   // Elementos
-  var elSubtotal    = document.getElementById('cartSubtotal');
-  var elEntrega     = document.getElementById('cartEntrega');
-  var elTotal       = document.getElementById('cartTotal');
+  var elSubtotal = document.getElementById('cartSubtotal');
+  var elEntrega = document.getElementById('cartEntrega');
+  var elTotal = document.getElementById('cartTotal');
   var elDescontoRow = document.getElementById('descontoRow');
-  var elDesconto    = document.getElementById('cartDesconto');
+  var elDesconto = document.getElementById('cartDesconto');
 
   if (elSubtotal) elSubtotal.textContent = formatarMoeda(subtotal);
-  if (elTotal)    elTotal.textContent    = formatarMoeda(total);
+  if (elTotal) elTotal.textContent = formatarMoeda(total);
 
   // Entrega
   if (elEntrega) {
@@ -342,7 +342,7 @@ function atualizarTotais() {
     var descontoTotal = desconto + descontoFrete;
     if (descontoTotal > 0) {
       elDescontoRow.style.display = 'flex';
-      elDesconto.textContent      = 'â€” ' + formatarMoeda(descontoTotal);
+      elDesconto.textContent = 'â€” ' + formatarMoeda(descontoTotal);
     } else {
       elDescontoRow.style.display = 'none';
     }
@@ -371,31 +371,31 @@ function atualizarCarrinhoUI() {
   }
 
   // ---- Elementos que dependem de o carrinho estar vazio ou nÃ£o ----
-  var elEmpty    = document.getElementById('cartEmpty');
-  var elItems    = document.getElementById('cartItems');
-  var elCoupon   = document.getElementById('cartCoupon');
+  var elEmpty = document.getElementById('cartEmpty');
+  var elItems = document.getElementById('cartItems');
+  var elCoupon = document.getElementById('cartCoupon');
   var elDelivery = document.getElementById('cartDelivery');
-  var elSummary  = document.getElementById('cartSummary');
-  var elForm     = document.getElementById('cartForm');
+  var elSummary = document.getElementById('cartSummary');
+  var elForm = document.getElementById('cartForm');
 
   if (!elItems) return; // Se o DOM do carrinho nÃ£o existir, encerra
 
   if (carrinho.length === 0) {
     // --- Estado vazio ---
-    if (elEmpty)    elEmpty.style.display    = 'flex';
-    if (elCoupon)   elCoupon.style.display   = 'none';
+    if (elEmpty) elEmpty.style.display = 'flex';
+    if (elCoupon) elCoupon.style.display = 'none';
     if (elDelivery) elDelivery.style.display = 'none';
-    if (elSummary)  elSummary.style.display  = 'none';
-    if (elForm)     elForm.style.display     = 'none';
+    if (elSummary) elSummary.style.display = 'none';
+    if (elForm) elForm.style.display = 'none';
     elItems.innerHTML = '';
 
   } else {
     // --- Carrinho com itens ---
-    if (elEmpty)    elEmpty.style.display    = 'none';
-    if (elCoupon)   elCoupon.style.display   = 'block';
+    if (elEmpty) elEmpty.style.display = 'none';
+    if (elCoupon) elCoupon.style.display = 'block';
     if (elDelivery) elDelivery.style.display = 'block';
-    if (elSummary)  elSummary.style.display  = 'flex';
-    if (elForm)     elForm.style.display     = 'block';
+    if (elSummary) elSummary.style.display = 'flex';
+    if (elForm) elForm.style.display = 'block';
 
     elItems.innerHTML = carrinho.map(function (item) {
       return renderizarItemCarrinho(item);
@@ -412,30 +412,30 @@ function atualizarCarrinhoUI() {
  */
 function renderizarItemCarrinho(item) {
   var subtotalItem = item.preco * item.quantidade;
-  var imgFallback  = 'data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2260%22 height%3D%2256%22%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 fill%3D%22%236B0010%22%2F%3E%3Ctext x%3D%2250%25%22 y%3D%2250%25%22 dominant-baseline%3D%22middle%22 text-anchor%3D%22middle%22 fill%3D%22white%22 font-size%3D%2224%22%3E%F0%9F%8D%94%3C%2Ftext%3E%3C%2Fsvg%3E';
+  var imgFallback = 'data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2260%22 height%3D%2256%22%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 fill%3D%22%236B0010%22%2F%3E%3Ctext x%3D%2250%25%22 y%3D%2250%25%22 dominant-baseline%3D%22middle%22 text-anchor%3D%22middle%22 fill%3D%22white%22 font-size%3D%2224%22%3E%F0%9F%8D%94%3C%2Ftext%3E%3C%2Fsvg%3E';
 
   return '<div class="cart-item" data-id="' + item.id + '">' +
     '<div class="cart-item-img">' +
-      '<img src="' + item.imagem + '" alt="' + item.nome + '" loading="lazy" ' +
-           'onerror="this.src=\'' + imgFallback + '\'">' +
+    '<img src="' + item.imagem + '" alt="' + item.nome + '" loading="lazy" ' +
+    'onerror="this.src=\'' + imgFallback + '\'">' +
     '</div>' +
     '<div class="cart-item-info">' +
-      '<div class="cart-item-name">' + item.nome + '</div>' +
-      '<div class="cart-item-price">' + formatarMoeda(item.preco) + ' cada</div>' +
-      '<div class="cart-item-controls">' +
-        '<button class="qty-btn" onclick="alterarQuantidade(' + item.id + ', -1)" ' +
-                'aria-label="Diminuir quantidade de ' + item.nome + '">âˆ’</button>' +
-        '<span class="qty-value">' + item.quantidade + '</span>' +
-        '<button class="qty-btn" onclick="alterarQuantidade(' + item.id + ', 1)" ' +
-                'aria-label="Aumentar quantidade de ' + item.nome + '">+</button>' +
-      '</div>' +
+    '<div class="cart-item-name">' + item.nome + '</div>' +
+    '<div class="cart-item-price">' + formatarMoeda(item.preco) + ' cada</div>' +
+    '<div class="cart-item-controls">' +
+    '<button class="qty-btn" onclick="alterarQuantidade(' + item.id + ', -1)" ' +
+    'aria-label="Diminuir quantidade de ' + item.nome + '">âˆ’</button>' +
+    '<span class="qty-value">' + item.quantidade + '</span>' +
+    '<button class="qty-btn" onclick="alterarQuantidade(' + item.id + ', 1)" ' +
+    'aria-label="Aumentar quantidade de ' + item.nome + '">+</button>' +
+    '</div>' +
     '</div>' +
     '<div class="cart-item-subtotal">' +
-      '<span>' + formatarMoeda(subtotalItem) + '</span>' +
-      '<button class="remove-btn" onclick="removerDoCarrinho(' + item.id + ')" ' +
-              'aria-label="Remover ' + item.nome + ' do carrinho">âœ•</button>' +
+    '<span>' + formatarMoeda(subtotalItem) + '</span>' +
+    '<button class="remove-btn" onclick="removerDoCarrinho(' + item.id + ')" ' +
+    'aria-label="Remover ' + item.nome + ' do carrinho">âœ•</button>' +
     '</div>' +
-  '</div>';
+    '</div>';
 }
 
 
@@ -501,10 +501,10 @@ function atualizarBotaoProduto(id) {
       } else {
         btn.innerHTML =
           '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" ' +
-              'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-            '<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>' +
-            '<line x1="3" y1="6" x2="21" y2="6"/>' +
-            '<path d="M16 10a4 4 0 01-8 0"/>' +
+          'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>' +
+          '<line x1="3" y1="6" x2="21" y2="6"/>' +
+          '<path d="M16 10a4 4 0 01-8 0"/>' +
           '</svg> Adicionar';
         btn.classList.remove('in-cart');
       }

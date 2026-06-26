@@ -18,36 +18,36 @@ var CUPONS_DISPONIVEIS = {
 
   // 10% de desconto no subtotal
   'ARTE10': {
-    tipo:     'percentual',
-    valor:    10,
+    tipo: 'percentual',
+    valor: 10,
     descricao: '10% de desconto no pedido'
   },
 
   // 15% de desconto no subtotal
   'PROMO15': {
-    tipo:     'percentual',
-    valor:    15,
+    tipo: 'percentual',
+    valor: 15,
     descricao: '15% de desconto no pedido'
   },
 
   // R$ 5,00 fixo de desconto
   'BEMVINDO': {
-    tipo:     'fixo',
-    valor:    5,
+    tipo: 'fixo',
+    valor: 5,
     descricao: 'R$ 5,00 de desconto na primeira compra'
   },
 
   // R$ 8,00 fixo de desconto
   'AMIGO8': {
-    tipo:     'fixo',
-    valor:    8,
+    tipo: 'fixo',
+    valor: 8,
     descricao: 'R$ 8,00 de desconto'
   },
 
   // Frete grátis (desconta 100% do frete)
   'FRETEGRATIS': {
-    tipo:     'frete',
-    valor:    100,
+    tipo: 'frete',
+    valor: 100,
     descricao: 'Frete grátis em qualquer bairro 🚴'
   }
 };
@@ -58,7 +58,7 @@ var CUPONS_DISPONIVEIS = {
  * Chamada pelo onclick do botão "Aplicar".
  */
 function aplicarCupom() {
-  var input    = document.getElementById('cupomInput');
+  var input = document.getElementById('cupomInput');
   var feedback = document.getElementById('cupomFeedback');
   if (!input) return;
 
@@ -91,18 +91,18 @@ function aplicarCupom() {
   cupomAtivo = Object.assign({ codigo: codigo }, cupomEncontrado);
 
   // Atualiza a UI do campo
-  input.value    = codigo;
+  input.value = codigo;
   input.disabled = true;
 
   var btn = document.getElementById('cupomBtn');
   if (btn) {
     btn.textContent = 'Remover';
-    btn.onclick     = removerCupom;
+    btn.onclick = removerCupom;
   }
 
   exibirFeedbackCupom('success', '✓ Cupom aplicado: ' + cupomAtivo.descricao);
   if (typeof atualizarTotais === 'function') atualizarTotais();
-  if (typeof mostrarToast    === 'function') mostrarToast('🎉 Cupom "' + codigo + '" aplicado!', 'success');
+  if (typeof mostrarToast === 'function') mostrarToast('🎉 Cupom "' + codigo + '" aplicado!', 'success');
 }
 
 /* REMOVER CUPOM */
@@ -115,7 +115,7 @@ function removerCupom() {
 
   var input = document.getElementById('cupomInput');
   if (input) {
-    input.value    = '';
+    input.value = '';
     input.disabled = false;
     input.focus();
   }
@@ -123,13 +123,13 @@ function removerCupom() {
   var btn = document.getElementById('cupomBtn');
   if (btn) {
     btn.textContent = 'Aplicar';
-    btn.onclick     = aplicarCupom;
+    btn.onclick = aplicarCupom;
   }
 
   exibirFeedbackCupom('', '');
 
   if (typeof atualizarTotais === 'function') atualizarTotais();
-  if (typeof mostrarToast    === 'function') mostrarToast('Cupom removido.', 'info');
+  if (typeof mostrarToast === 'function') mostrarToast('Cupom removido.', 'info');
 }
 
 /* CÁLCULO DO DESCONTO DE PRODUTO */
@@ -179,5 +179,5 @@ function exibirFeedbackCupom(tipo, mensagem) {
   if (!el) return;
 
   el.textContent = mensagem;
-  el.className   = 'coupon-feedback' + (tipo ? ' ' + tipo : '');
+  el.className = 'coupon-feedback' + (tipo ? ' ' + tipo : '');
 }
