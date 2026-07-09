@@ -6,19 +6,64 @@
     <title>Exercicio JS</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a5acd, #00c6ff);
+            color: #222;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 2rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2b5cff;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .resultado {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f5f7ff;
+            border-left: 4px solid #4b3f97;
+            border-radius: 8px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #2b5cff;
         }
     </style>
 </head>
 <body>
-<h1 style="color: blue; font-size: 24px;">Exercício JavaScript</h1>
-    <p>Este é um exemplo de exercício em JavaScript.</p>
-    <script>
-        var nome = prompt("Digite seu nome:");
-        document.write(`Olá, <strong>${nome}</strong>! Seu nome tem ${nome.length} letras.<br>`);
-        document.write(`Seu nome em maiúsculas é <strong>${nome.toUpperCase()}</strong>.`);
-    </script>
+    <div class="container">
+        <h1>Exercício JavaScript</h1>
+        <p>Este é um exemplo de exercício em JavaScript com uma aparência mais bonita e organizada.</p>
+        <div class="resultado">
+            <script>
+                var nome = prompt("Digite seu nome:");
+                document.write(`Olá, <strong>${nome}</strong>! Seu nome tem ${nome.length} letras.<br>`);
+                document.write(`Seu nome em maiúsculas é <strong>${nome.toUpperCase()}</strong>.`);
+            </script>
+        </div>
+    </div>
 </body>
 </html>
