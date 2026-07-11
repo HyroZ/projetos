@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loja de Roupas</title>
+    <style>
+      :root {
+        --bg: #f8f1eb;
+        --text: #1f1f1f;
+        --accent: #d96c5f;
+        --accent-dark: #a94a3a;
+        --card: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(135deg, #111, #333);
+        color: white;
+        padding: 20px 5%;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 24px;
+        padding: 40px 5%;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: 12px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .hero-card {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .hero-card img {
+        width: 100%;
+        height: 160px;
+        border-radius: 12px;
+        object-fit: cover;
+        margin-bottom: 12px;
+      }
+
+      .section {
+        padding: 20px 5% 40px;
+      }
+
+      .section h2 {
+        margin-bottom: 16px;
+      }
+
+      .categories, .products {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      }
+
+      .product-image {
+        margin-bottom: 10px;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 120px;
+        border-radius: 12px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .price {
+        font-weight: bold;
+        color: var(--accent-dark);
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px 5% 30px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .categories, .products {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Moda Moc</div>
+        <div>
+          <a href="#categorias">Categorias</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Estilo moderno para todos os dias</h1>
+          <p>Descubra peças práticas, bonitas e confortáveis para montar seu look perfeito.</p>
+          <a href="#produtos" class="btn">Ver coleção</a>
+        </div>
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="Modelo usando roupa elegante" />
+          <h3>Nova coleção</h3>
+          <p>Blusas, calças e acessórios com muito estilo.</p>
+        </div>
+      </section>
+
+      <section id="categorias" class="section">
+        <h2>Categorias</h2>
+        <div class="categories">
+          <div class="card">
+            <h3>Casual</h3>
+            <p>Peças leves e confortáveis para o dia a dia.</p>
+          </div>
+          <div class="card">
+            <h3>Esporte</h3>
+            <p>Roupas funcionais com ótimo caimento.</p>
+          </div>
+          <div class="card">
+            <h3>Elegante</h3>
+            <p>Looks sofisticados para ocasiões especiais.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="produtos" class="section">
+        <h2>Produtos em destaque</h2>
+        <div class="products">
+          <div class="card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Camisa básica feminina" />
+            </div>
+            <h3>Camisa Básica</h3>
+            <p>Modelo confortável e versátil.</p>
+            <div class="price">R$ 79,90</div>
+          </div>
+          <div class="card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80" alt="Calça jeans estilosa" />
+            </div>
+            <h3>Calça Jeans</h3>
+            <p>Estilo moderno com caimento perfeito.</p>
+            <div class="price">R$ 129,90</div>
+          </div>
+          <div class="card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="Jaqueta estilosa" />
+            </div>
+            <h3>Jaqueta</h3>
+            <p>Ideal para dias frios e looks urbanos.</p>
+            <div class="price">R$ 189,90</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contato">
+      <p>Moda Chic © 2026 | contato@modachic.com.br</p>
+    </footer>
+  </body>
+</html>
