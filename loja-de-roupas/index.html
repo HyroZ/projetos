@@ -1,153 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Roupas</title>
-    <style>
-      :root {
-        --bg: #f8f1eb;
-        --text: #1f1f1f;
-        --accent: #d96c5f;
-        --accent-dark: #a94a3a;
-        --card: #ffffff;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-      }
-
-      header {
-        background: linear-gradient(135deg, #111, #333);
-        color: white;
-        padding: 20px 5%;
-      }
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .logo {
-        font-size: 1.4rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-      }
-
-      nav a {
-        color: white;
-        text-decoration: none;
-        margin-left: 15px;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 24px;
-        padding: 40px 5%;
-        align-items: center;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-        margin-bottom: 12px;
-      }
-
-      .hero p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-      }
-
-      .btn {
-        display: inline-block;
-        background: var(--accent);
-        color: white;
-        padding: 12px 18px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .hero-card {
-        background: var(--card);
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      }
-
-      .hero-card img {
-        width: 100%;
-        height: 160px;
-        border-radius: 12px;
-        object-fit: cover;
-        margin-bottom: 12px;
-      }
-
-      .section {
-        padding: 20px 5% 40px;
-      }
-
-      .section h2 {
-        margin-bottom: 16px;
-      }
-
-      .categories, .products {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .card {
-        background: var(--card);
-        border-radius: 14px;
-        padding: 16px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      }
-
-      .product-image {
-        margin-bottom: 10px;
-      }
-
-      .product-image img {
-        width: 100%;
-        height: 120px;
-        border-radius: 12px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .price {
-        font-weight: bold;
-        color: var(--accent-dark);
-      }
-
-      footer {
-        text-align: center;
-        padding: 20px 5% 30px;
-        color: #666;
-      }
-
-      @media (max-width: 768px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .categories, .products {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
@@ -178,47 +35,102 @@
       <section id="categorias" class="section">
         <h2>Categorias</h2>
         <div class="categories">
-          <div class="card">
-            <h3>Casual</h3>
-            <p>Peças leves e confortáveis para o dia a dia.</p>
-          </div>
-          <div class="card">
-            <h3>Esporte</h3>
-            <p>Roupas funcionais com ótimo caimento.</p>
-          </div>
-          <div class="card">
-            <h3>Elegante</h3>
-            <p>Looks sofisticados para ocasiões especiais.</p>
-          </div>
+          <a class="category-btn" href="#casual">Casual</a>
+          <a class="category-btn" href="#esporte">Esporte</a>
+          <a class="category-btn" href="#social">Social</a>
         </div>
       </section>
 
       <section id="produtos" class="section">
         <h2>Produtos em destaque</h2>
-        <div class="products">
-          <div class="card">
-            <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Camisa básica feminina" />
+
+        <div class="product-group">
+          <h3 id="casual">Casual</h3>
+          <div class="products">
+            <div class="card">
+              <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Camisa básica feminina casual" />
+              </div>
+              <h3>Camisa Básica</h3>
+              <p>Modelo confortável e versátil para o seu dia a dia.</p>
+              <div class="price">R$ 79,90</div>
             </div>
-            <h3>Camisa Básica</h3>
-            <p>Modelo confortável e versátil.</p>
-            <div class="price">R$ 79,90</div>
+            <div class="card">
+              <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80" alt="Calça jeans casual" />
+              </div>
+              <h3>Calça Jeans</h3>
+              <p>Estilo moderno e confortável para qualquer ocasião.</p>
+              <div class="price">R$ 129,90</div>
+            </div>
+            <div class="card">
+              <div class="product-image">
+                <img src="https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_1280.jpg" alt="Jaqueta casual" />
+              </div>
+              <h3>Jaqueta Casual</h3>
+              <p>Peça versátil para complementar o look urbano.</p>
+              <div class="price">R$ 189,90</div>
+            </div>
           </div>
-          <div class="card">
-            <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80" alt="Calça jeans estilosa" />
+        </div>
+
+        <div class="product-group">
+          <h3 id="esporte">Esporte</h3>
+          <div class="products">
+            <div class="card">
+              <div class="product-image">
+                <img src="https://imgs.search.brave.com/YYn3lPT17vkL2iglHoB7LDCrqJjtkl71l1mYjiiZXls/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMubmV0c2hvZXMu/Y29tLmJyL3Byb2R1/dG9zL2tpdC00LWNh/bWlzZXRhLXJlZ2F0/YXMtZHJ5LTItbGlz/YS1lLTItcmFqYWRh/LWVzcG9ydGUtcGFz/c2Vpby8wNC9NMlEt/MDE0Ny04MDQvTTJR/LTAxNDctODA0X3pv/b20xLmpwZz90cz0x/NzM4MjMxODI2Jmlt/cz0zMjZ4" alt="Regata esportiva" />
+              </div>
+              <h3>Regata Esportiva</h3>
+              <p>Tecidos leves e respiráveis para o treino.</p>
+              <div class="price">R$ 59,90</div>
             </div>
-            <h3>Calça Jeans</h3>
-            <p>Estilo moderno com caimento perfeito.</p>
-            <div class="price">R$ 129,90</div>
+            <div class="card">
+              <div class="product-image">
+                <img src="https://imgs.search.brave.com/K-o7WwG4wUoeK4DgZaRaf6bpKufULqfPJX_MIMYAVRI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGNkbi5jb20u/YnIvaW1nL2ltZ19w/cm9kLzcwMjkxNS9s/ZWdnaW5nX2ZpdG5l/c3NfZGVtaWxsdXNf/YmFycmFfMDAzMjJf/Ml8yMDI2MDExNjEx/MTMxOF84MzBmNWY0/YzBhY2EuanBn" alt="Legging fitness" />
+              </div>
+              <h3>Legging</h3>
+              <p>Conforto e elasticidade para movimentos livres.</p>
+              <div class="price">R$ 99,90</div>
+            </div>
+            <div class="card">
+              <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Tênis esportivo" />
+              </div>
+              <h3>Tênis</h3>
+              <p>Amortecimento e estilo para correr e treinar.</p>
+              <div class="price">R$ 219,90</div>
+            </div>
           </div>
-          <div class="card">
-            <div class="product-image">
-              <img src="https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_1280.jpg" alt="Jaqueta estilosa" />
+        </div>
+
+        <div class="product-group">
+          <h3 id="social">Social</h3>
+          <div class="products">
+            <div class="card">
+              <div class="product-image">
+                <img src="https://imgs.search.brave.com/gjJN0yOYhY_uaObomvTqXtdKsHNn0mkYogTrFNXnsGI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGNkbi5jb20u/YnIvaW1nL2ltZ19w/cm9kLzEwMjI1ODEv/YmxhemVyX3NvY2lh/bF9tYW5nYV9sb25n/YV8xNzA3XzJfMmFl/YzEyM2I4MjZlZDJl/ODhmMDBkYjIzZDM2/ODJlNjcuanBn" alt="Blazer social" />
+              </div>
+              <h3>Blazer Social</h3>
+              <p>Peça elegante para eventos e compromissos formais.</p>
+              <div class="price">R$ 249,90</div>
             </div>
-            <h3>Jaqueta</h3>
-            <p>Ideal para dias frios e looks urbanos.</p>
-            <div class="price">R$ 189,90</div>
+            <div class="card">
+              <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Vestido social" />
+              </div>
+              <h3>Vestido Social</h3>
+              <p>Design refinado com corte sofisticado.</p>
+              <div class="price">R$ 199,90</div>
+            </div>
+            <div class="card">
+              <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Camisa social masculina" />
+              </div>
+              <h3>Camisa Social</h3>
+              <p>Acabamento impecável para looks mais formais.</p>
+              <div class="price">R$ 129,90</div>
+            </div>
           </div>
         </div>
       </section>
