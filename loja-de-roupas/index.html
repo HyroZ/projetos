@@ -10,7 +10,12 @@
     <header>
       <nav>
         <div class="logo">Moda Moc</div>
-        <div>
+        <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
           <a href="#categorias">Categorias</a>
           <a href="#produtos">Produtos</a>
           <a href="#contato">Contato</a>
@@ -137,8 +142,177 @@
     </main>
 
     <footer id="contato">
-      <p>Modai Moc © 2026 | contato@modamoc.com.br</p>
+      <p>Modai Moc © | contato@modamoc.com.br</p>
       <p> 2026 | Desenvolvido por Soares</p>
     </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const products = {
+        'camisa-basica': {
+          name: 'Camisa Básica',
+          category: 'Casual',
+          price: 'R$ 79,90',
+          status: 'Em estoque',
+          description: 'Modelo confortável e versátil para o seu dia a dia.',
+          material: 'Algodão com elastano',
+          fit: 'Regular fit',
+          colors: 'Branco, bege',
+          image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80',
+          alt: 'Camisa básica feminina casual'
+        },
+        'calca-jeans': {
+          name: 'Calça Jeans',
+          category: 'Casual',
+          price: 'R$ 129,90',
+          status: 'Em estoque',
+          description: 'Estilo moderno e confortável para qualquer ocasião.',
+          material: 'Jeans stretch',
+          fit: 'Cintura média',
+          colors: 'Azul escuro',
+          image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80',
+          alt: 'Calça jeans casual'
+        },
+        'jaqueta-casual': {
+          name: 'Jaqueta Casual',
+          category: 'Casual',
+          price: 'R$ 189,90',
+          status: 'Em estoque',
+          description: 'Peça versátil para complementar o look urbano.',
+          material: 'Algodão e poliéster',
+          fit: 'Ajuste regular',
+          colors: 'Preto, marrom',
+          image: 'https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_1280.jpg',
+          alt: 'Jaqueta casual'
+        },
+        'regata-esportiva': {
+          name: 'Regata Esportiva',
+          category: 'Esporte',
+          price: 'R$ 59,90',
+          status: 'Em estoque',
+          description: 'Tecidos leves e respiráveis para o treino.',
+          material: 'Poliéster dry-fit',
+          fit: 'Slim fit',
+          colors: 'Cinza, azul',
+          image: 'https://imgs.search.brave.com/YYn3lPT17vkL2iglHoB7LDCrqJjtkl71l1mYjiiZXls/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMubmV0c2hvZXMu/Y29tLmJyL3Byb2R1/dG9zL2tpdC00LWNh/bWlzZXRhLXJlZ2F0/YXMtZHJ5LTItbGlz/YS1lLTItcmFqYWRh/LWVzcG9ydGUtcGFz/c2Vpby8wNC9NMlEt/MDE0Ny04MDQvTTJR/LTAxNDctODA0X3pv/b20xLmpwZz90cz0x/NzM4MjMxODI2Jmlt/cz0zMjZ4',
+          alt: 'Regata esportiva'
+        },
+        'legging': {
+          name: 'Legging',
+          category: 'Esporte',
+          price: 'R$ 99,90',
+          status: 'Em estoque',
+          description: 'Conforto e elasticidade para movimentos livres.',
+          material: 'Poliamida com elastano',
+          fit: 'Ajuste compressivo',
+          colors: 'Preto, azul-marinho',
+          image: 'https://imgs.search.brave.com/K-o7WwG4wUoeK4DgZaRaf6bpKufULqfPJX_MIMYAVRI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGNkbi5jb20u/YnIvaW1nL2ltZ19w/cm9kLzcwMjkxNS9s/ZWdnaW5nX2ZpdG5l/c3NfZGVtaWxsdXNf/YmFycmFfMDAzMjJf/Ml8yMDI2MDExNjEx/MTMxOF84MzBmNWY0/YzBhY2EuanBn',
+          alt: 'Legging fitness'
+        },
+        'tenis-esportivo': {
+          name: 'Tênis Esportivo',
+          category: 'Esporte',
+          price: 'R$ 219,90',
+          status: 'Em estoque',
+          description: 'Amortecimento e estilo para correr e treinar.',
+          material: 'Mesh respirável',
+          fit: 'Normal',
+          colors: 'Branco, preto',
+          image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80',
+          alt: 'Tênis esportivo'
+        },
+        'blazer-social': {
+          name: 'Blazer Social',
+          category: 'Social',
+          price: 'R$ 249,90',
+          status: 'Em estoque',
+          description: 'Peça elegante para eventos e compromissos formais.',
+          material: 'Lã fria',
+          fit: 'Slim fit',
+          colors: 'Preto, cinza',
+          image: 'https://imgs.search.brave.com/gjJN0yOYhY_uaObomvTqXtdKsHNn0mkYogTrFNXnsGI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGNkbi5jb20u/YnIvaW1nL2ltZ19w/cm9kLzEwMjI1ODEv/YmxhemVyX3NvY2lh/bF9tYW5nYV9sb25n/YV8xNzA3XzJfMmFl/YzEyM2I4MjZlZDJl/ODhmMDBkYjIzZDM2/ODJlNjcuanBn',
+          alt: 'Blazer social'
+        },
+        'vestido-social': {
+          name: 'Vestido Social',
+          category: 'Social',
+          price: 'R$ 199,90',
+          status: 'Em estoque',
+          description: 'Design refinado com corte sofisticado.',
+          material: 'Viscose premium',
+          fit: 'Ajuste leve',
+          colors: 'Preto, vinho',
+          image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80',
+          alt: 'Vestido social'
+        },
+        'camisa-social': {
+          name: 'Camisa Social',
+          category: 'Social',
+          price: 'R$ 129,90',
+          status: 'Em estoque',
+          description: 'Acabamento impecável para looks mais formais.',
+          material: 'Algodão egípcio',
+          fit: 'Classic fit',
+          colors: 'Branco, azul',
+          image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+          alt: 'Camisa social masculina'
+        }
+      };
+
+      const detailImage = document.getElementById('detail-image');
+      const detailCategory = document.getElementById('detail-category');
+      const detailName = document.getElementById('detail-name');
+      const detailPrice = document.getElementById('detail-price');
+      const detailStatus = document.getElementById('detail-status');
+      const detailDescription = document.getElementById('detail-description');
+      const detailMaterial = document.getElementById('detail-material');
+      const detailFit = document.getElementById('detail-fit');
+      const detailColors = document.getElementById('detail-colors');
+
+      const updateDetailSection = (productId) => {
+        const product = products[productId];
+        if (!product) return;
+
+        detailImage.src = product.image;
+        detailImage.alt = product.alt;
+        detailCategory.textContent = `Categoria: ${product.category}`;
+        detailName.textContent = product.name;
+        detailPrice.textContent = product.price;
+        detailStatus.textContent = product.status;
+        detailDescription.textContent = product.description;
+        detailMaterial.textContent = product.material;
+        detailFit.textContent = product.fit;
+        detailColors.textContent = product.colors;
+      };
+
+      document.querySelectorAll('.product-card').forEach((card) => {
+        const productId = card.dataset.product;
+        card.addEventListener('click', () => {
+          updateDetailSection(productId);
+          document.getElementById('produto-detalhe').scrollIntoView({ behavior: 'smooth' });
+        });
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            updateDetailSection(productId);
+            document.getElementById('produto-detalhe').scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
