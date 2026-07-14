@@ -1,8 +1,5 @@
-// =========================================================
-// MODA MOC — interações
-// =========================================================
 
-// ---- Page loader ----
+// Page loader 
 window.addEventListener('load', () => {
   const loader = document.querySelector('.page-loader');
   if (loader) {
@@ -10,7 +7,7 @@ window.addEventListener('load', () => {
   }
 });
 
-// ---- Menu mobile (lógica original mantida) ----
+// Menu mobile
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -28,7 +25,7 @@ if (navToggle && navLinks) {
   });
 }
 
-// ---- Toasts ----
+// Toasts 
 const toastStack = document.querySelector('.toast-stack');
 
 function showToast({ type = 'success', title, message, duration = 3200 }) {
@@ -55,7 +52,7 @@ function showToast({ type = 'success', title, message, duration = 3200 }) {
   setTimeout(remove, duration);
 }
 
-// ---- Carrinho (contador simples, sem persistência) ----
+// Carrinho 
 let cartCount = 0;
 const cartBadge = document.querySelector('.cart-count .badge');
 
@@ -76,7 +73,7 @@ document.querySelectorAll('[data-add-to-cart]').forEach(button => {
   });
 });
 
-// ---- Skeleton loading (simulação de carregamento dos produtos) ----
+// Skeleton loading 
 function revealProducts(grid) {
   const skeletons = grid.querySelectorAll('.skel-card');
   const real = grid.querySelectorAll('.card[data-real]');
@@ -89,7 +86,7 @@ document.querySelectorAll('[data-product-grid]').forEach(grid => {
   setTimeout(() => revealProducts(grid), delay);
 });
 
-// ---- Filtro de categorias com empty state ----
+// Filtro de categorias com empty state 
 const chips = document.querySelectorAll('.chip[data-filter]');
 const productCards = document.querySelectorAll('.products [data-real]');
 const emptyState = document.querySelector('[data-empty-state]');
@@ -116,7 +113,7 @@ chips.forEach(chip => {
   });
 });
 
-// ---- Newsletter ----
+// Newsletter 
 const newsletterForm = document.querySelector('[data-newsletter-form]');
 
 if (newsletterForm) {
