@@ -46,37 +46,37 @@ function createBoard() {
     // Cria o tabuleiro de jogo
     const board = document.getElementById('game-board');
     board.innerHTML = '';
-        shuffle(gameCards);
-        gameCards.forEach((card) => {
+    shuffle(gameCards);
+    gameCards.forEach((card) => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
         const imgElement = document.createElement('img');
-        imgElement.src = `/projetos/jogo-da-memoria/images/${card}.png`; //Ajusta o caminho da imagem conforme necessário
+        imgElement.src = `images/${card}.png`;
         imgElement.alt = card;
         cardElement.appendChild(imgElement);
         cardElement.dataset.card = card;
+        cardElement.classList.remove('flipped');
         cardElement.addEventListener('click', flipCard);
         board.appendChild(cardElement);
     });
 }
 
-function flipCard(cardElement, card) {
-    // Lógica para virar a carta
-    if (lockBoard || cardElement === firstCard) return;
-    if (this === firstCard) return;
+function flipCard() {
+    if (lockBoard) return;
+    const cardElement = this;
+    if (cardElement === firstCard) return;
 
-    const img = this.querySelector('img');
-    img.style.display = 'block';
+    cardElement.classList.add('flipped');
 
     if (!firstCard) {
-        firstCard = this;
+        firstCard = cardElement;
         return;
     }
 
-    secondCard = this;
+    secondCard = cardElement;
     lockBoard = true;
 
-    if (firstCard.dataset.card.split('.')[0] === secondCard.dataset.card.split('.')[0]) {
+    if (firstCard.dataset.card === secondCard.dataset.card) {
         score += 10;
         matchedPairs++;
         firstCard.classList.add('vibrate');
@@ -85,12 +85,12 @@ function flipCard(cardElement, card) {
             firstCard.removeEventListener('click', flipCard);
             secondCard.removeEventListener('click', flipCard);
             resetBoard();
-        }, 200);
+        }, 300);
     } else {
         score -= 5;
         setTimeout(() => {
-            firstCard.querySelector('img').style.display = 'none';
-            secondCard.querySelector('img').style.display = 'none';
+            firstCard.classList.remove('flipped');
+            secondCard.classList.remove('flipped');
             resetBoard();
         }, 1000);
     }
