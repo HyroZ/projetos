@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somando Números</title>
     <style>
+        body {
+            font: normal, 18pt Arial;
+        }
         .calc {
             font: normal 20pt Arial;
             align-items: center;
@@ -15,6 +18,13 @@
             justify-content: center;
             margin-top: 20px;
             width: 100%;
+            margin-top: 30px;
+            font: normal 18pt Arial;
+        }
+        div#res {
+            font: normal 18pt Arial;
+            margin-top: 30px;
+            text-align: center;
         }
     </style>
 </head>
@@ -25,14 +35,18 @@
     <div class="inputs">
     <input type="number" name="txtn1" id="txtn1" placeholder="Digite um número">
     <input type="number" name="txtn2" id="txtn2" placeholder="Digite outro número">
-    <input type="button" value="Somar" onclick="somar()">   
-    </div>
+    <input type="button" value="Somar" onclick="somar()"> 
+      </div>
+    <div id="res">Resultado</div>
+  
     <script >
         function somar() {
             var tn1= Number(document.getElementById('txtn1').value);
             var tn2 = window.document.querySelector('input#txtn2').value;
+            var res = window.document.getElementById('res');
+            var tn2 = Number(tn2);
             var s = tn1 + tn2;
-            alert(`A soma entre ${tn1} e ${tn2} é igual a ${s}`);
+            res.innerHTML = `A soma entre ${tn1} e ${tn2} é igual a <strong>${s}</strong>`;
         }
         </script>
 </body>
