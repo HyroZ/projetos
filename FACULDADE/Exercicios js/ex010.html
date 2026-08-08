@@ -6,7 +6,7 @@
     <title>DETRAN</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Tahoma , sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -27,9 +27,9 @@
             color: #666;
             text-align: center;
         }
-        button {
+        .container button {
             height: 40px;
-            
+            width: 100%;
             background-color: #007BFF;
             color: #fff;
             border-radius: 10px;
@@ -54,7 +54,7 @@
         var vel = Number(txtv.value)
         res.innerHTML = `<p>Sua velocidade atual é de <strong>${vel}</strong> km/h.</p>`
         if (vel > 60) {
-            res.innerHTML += `<p>Você ultrapassou a velocidade permitida. <strong>MULTADO!</strong></p>`
+            res.innerHTML += `<p>Você está acima do limite de velocidade!</p>`
         }
         res.innerHTML += `<p>Dirija sempre com segurança!</p>`
     }

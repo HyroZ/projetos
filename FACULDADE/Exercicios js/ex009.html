@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificação de País</title>
+    <style>
+        body {
+            font-family: Tahoma , sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .container button {
+            height: 40px;
+            width: 100%;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Identificação de País</h1>
+        <p>Digite o país em que você está:</p>
+        <input type="text" id="txtpais" name="txtpais" placeholder="Digite o país">
+        <button onclick="verificarPais()">Verificar</button>
+    </div>
+    <div id="res">
+    </div>
+    <script>
+        function verificarPais() {
+            var txtp = document.getElementById('txtpais')
+            var res = document.getElementById('res')
+            var pais = txtp.value.toLowerCase()
+            res.innerHTML = `<p>Você digitou: <strong>${pais}</strong></p>`
+            if (pais === 'brasil') {
+                res.innerHTML += `<p>Você está no Brasil!</p>`
+            } else if (pais === 'portugal') {
+                res.innerHTML += `<p>Você está em Portugal!</p>`
+            } else {
+                res.innerHTML += `<p>País não identificado.</p>`
+            }
+            return;
+        }
+    </script>
+</body>
+</html>
