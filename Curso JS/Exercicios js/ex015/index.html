@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificador de Idade</title>
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Verificador de Idade</h1>
+    </header>
+    <section>
+      <div>
+        <p> Ano de Nascimento:
+            <input type="number" name="txtano" id="txtano" placeholder="Ex: 2000" />
+        </p>
+        <p> Sexo:
+            <input type="radio" name="radsex" id="masc" value="masc" checked />
+            <label for="masc">Masculino</label>
+            <input type="radio" name="radsex" id="fem" value="fem" /> 
+            <label for="fem">Feminino</label>
+        </p>
+        <p>
+            <input type="button" value="Verificar" id="verificar" onclick="Verificar()"/>
+      </div>
+      <div id="res">
+        Preencha os dados acima para ver o resultado!
+      </div>
+    </section>
+    <footer>
+      <p>&copy; MeuSite 2026</p>
+    </footer>
+  </body>
+  <script src="script.js"></script>
+</html>
