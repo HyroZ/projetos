@@ -11,6 +11,10 @@ function contar() {
         numberI = Number(i);
         numberF = Number(f);
         numberP = Number(p);
+        if (numberP <= 0) {
+            alert('Passo inválido! Considerando PASSO 1');
+            numberP = 1;
+        }
         res.innerHTML = 'Contando: <br>';
         if ( numberI < numberF) {
             for (let c = numberI; c <= numberF; c += numberP) {
