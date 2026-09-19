@@ -1,3 +1,5 @@
+# Exercício 08 - Python - Testando tuplas e listas com funções built-in
+
 texto = "explorando a diversidade de linguagens de programação com Python"
 print(f"Tamanho do texto: {len(texto)}")
 print(f"Quantidade de 'e' no texto: {texto.count('e')}")
@@ -15,3 +17,13 @@ vogais = ('a', 'e', 'i', 'o', 'u')
 print(f"Tipos de vogais = {type(vogais)}")
 for p, z in enumerate(vogais):
   print(f"Posição = {p}, valor = {z}")
+
+
+
+cores = ("azul", "verde")
+
+outra = cores
+cores = ("vermelho", "amarelo")
+
+print(outra)
+print(cores)
