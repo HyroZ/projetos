@@ -13,12 +13,13 @@ for cor in cores:
 linguagens = ["Python", "JavaScript", "C++", "Java", "C#"]
 print("Antes da listcomp =", linguagens)
 
+
 vogais = ('a', 'e', 'i', 'o', 'u')
 print(f"Tipos de vogais = {type(vogais)}")
 for p, z in enumerate(vogais):
   print(f"Posição = {p}, valor = {z}")
 
-
+#Testando tuplas e listas
 
 cores = ("azul", "verde")
 
@@ -27,3 +28,13 @@ cores = ("vermelho", "amarelo")
 
 print(outra)
 print(cores)
+
+#Lista de convidados
+
+convidados = ("alice", "rodrigo", "carol", "felipe")
+confirmados = ["alice", "rodrigo"]
+
+print("Convidados que ainda não confirmaram:")
+for convidado in convidados:
+  if convidado not in confirmados:
+    print(f"- {convidado}")
