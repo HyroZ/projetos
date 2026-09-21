@@ -12,3 +12,6 @@ print("\nArray ao quadrado")
 print(squared_array)
 print("\nSoma dos elementos")
 print(sum_of_elements)
+
+#Acessando um elemento por índice
+print("\nElemento no índice 2", my_array[2])
