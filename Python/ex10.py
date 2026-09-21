@@ -14,4 +14,9 @@ print(f"Nome do produto: {produto['nome']}")
 print(f"Preço do produto: {produto['preco']}")
 print(f"Quantidade em estoque: {produto['estoque']}")
 
-x
+#Alterando estoque
+produto['estoque'] = 10
+#Adicionando uma chave nova
+produto['categoria'] = 'Informática'
+
+print(produto)
