@@ -18,3 +18,12 @@ print(f"Idade: {pessoa1.idade}")
 #Chama o método aniversário para aumentar a idade
 pessoa1.aniversario()
 print(f"Nova idade: {pessoa1.idade}")
+
+#Herança - Classe-Pai Animal e duas Classe-Filhas
+class Animal:
+  def __init__(self, nome):
+    self.nome = nome
+
+  def fazer_barulho(self):
+    pass   #método "vazio" que será sobrescrito pelas filhas
+
