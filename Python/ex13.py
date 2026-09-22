@@ -14,3 +14,7 @@ class Pessoa:
 pessoa1 = Pessoa("João", 25, "Masculino")
 print(pessoa1.cumprimentar())
 print(f"Idade: {pessoa1.idade}")
+
+#Chama o método aniversário para aumentar a idade
+pessoa1.aniversario()
+print(f"Nova idade: {pessoa1.idade}")
