@@ -11,3 +11,13 @@ participantes = [
      "interesses": ["Química", "Engenharia"]}
 ]
 
+#Set - Regiões dos participantes (sem duplicar)
+regioes = set(p["localizacao"] for p in participantes)
+
+#Dict - agrupando nomes por afiliação
+afiliacoes = {}
+for p in participantes:
+  aff = p["afiliacao"]
+  if aff not in afiliacoes:
+    afiliacoes[aff] = []
+  afiliacoes[aff].append(p["nome"])
