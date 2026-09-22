@@ -61,3 +61,17 @@ class Veiculo:
 
   def status(self):
     return (f"Marca: {self.marca}, Modelo: {self.modelo}, Ano: {self.ano}, Velocidade: {self.velocidade}")
+
+#Classes-Filhas - Carro e Bicicleta
+class Carro(Veiculo):
+  def __init__(self, marca, modelo, ano, potencia):
+    super().__init__(marca, modelo, ano)             #super() = chama o construtor da Classe-Pai
+    self.potencia = potencia
+
+  def acelerar(self, incremento):
+    self.velocidade += incremento + self.potencia
+
+class Bicicleta(Veiculo):
+  def  __init__(self, marca, modelo, ano, tipo):
+    super().__init__(marca, modelo, ano)
+    self.tipo = tipo
