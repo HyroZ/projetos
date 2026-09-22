@@ -43,3 +43,21 @@ whiskers = Gato("Whiskers")
 
 print(f"{rex.nome} faz barulho: {rex.fazer_barulho()}")
 print(f"{whiskers.nome} faz barulho: {whiskers.fazer_barulho()}")
+
+
+#Classe Veículo (classe-pai)
+class Veiculo:
+  def __init__(self, marca, modelo, ano):
+    self.marca = marca
+    self.modelo = modelo
+    self.ano = ano
+    self.velocidade = 0
+
+  def acelerar(self, valor):
+    self.velocidade += valor
+
+  def frear(self, valor):
+    self.velocidade -= valor
+
+  def status(self):
+    return (f"Marca: {self.marca}, Modelo: {self.modelo}, Ano: {self.ano}, Velocidade: {self.velocidade}")
