@@ -27,3 +27,19 @@ class Animal:
   def fazer_barulho(self):
     pass   #método "vazio" que será sobrescrito pelas filhas
 
+  class Cachorro(Animal):
+    def fazer_barulho(self):
+      return "Latir"
+
+  class Gato(Animal):
+    def fazer_barulho(self):
+      return "Miar"
+
+#Criando e usando objetos das Classes-Filhas
+
+
+rex = Cachorro("Rex")
+whiskers = Gato("Whiskers")
+
+print(f"{rex.nome} faz barulho: {rex.fazer_barulho()}")
+print(f"{whiskers.nome} faz barulho: {whiskers.fazer_barulho()}")
