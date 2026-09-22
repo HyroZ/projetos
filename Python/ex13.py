@@ -4,7 +4,7 @@ class Pessoa:
     self.idade = idade
     self.genero = genero
   def apresentar(self):
-    print(f"Olá, meu nome é {self.nome}, tenho {self.idade} anos e sou do gênero {genero}.")
+    print(f"Olá, meu nome é {self.nome}, tenho {self.idade} anos e sou do gênero {self.genero}.")
   def cumprimentar(self):
    return f"Olá, meu nome é {self.nome}."
 
@@ -27,13 +27,13 @@ class Animal:
   def fazer_barulho(self):
     pass   #método "vazio" que será sobrescrito pelas filhas
 
-  class Cachorro(Animal):
-    def fazer_barulho(self):
-      return "Latir"
+class Cachorro(Animal):
+  def fazer_barulho(self):
+    return "Latir"
 
-  class Gato(Animal):
-    def fazer_barulho(self):
-      return "Miar"
+class Gato(Animal):
+  def fazer_barulho(self):
+    return "Miar"
 
 #Criando e usando objetos das Classes-Filhas
 
@@ -72,13 +72,13 @@ class Carro(Veiculo):
     self.velocidade += incremento + self.potencia
 
 class Bicicleta(Veiculo):
-  def  __init__(self, marca, modelo, ano, tipo):
+  def __init__(self, marca, modelo, ano, tipo):
     super().__init__(marca, modelo, ano)
     self.tipo = tipo
 
-
-def status(self):
-  return (f"Marca: {self.marca}, Modelo: {self.modelo}, Ano: {self.ano}, Velocidade: {self.velocidade} km/h, Tipo: {self.tipo}")
+  def status(self):
+    return (f"Marca: {self.marca}, Modelo: {self.modelo}, Ano: {self.ano}, "
+            f"Velocidade: {self.velocidade} km/h, Tipo: {self.tipo}")
 
 #Testando os objetos
 carro1 = Carro("Toyota", "Corolla", 2022, 150)
