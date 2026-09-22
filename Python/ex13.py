@@ -79,3 +79,15 @@ class Bicicleta(Veiculo):
 
 def status(self):
   return (f"Marca: {self.marca}, Modelo: {self.modelo}, Ano: {self.ano}, Velocidade: {self.velocidade} km/h, Tipo: {self.tipo}")
+
+#Testando os objetos
+carro1 = Carro("Toyota", "Corolla", 2022, 150)
+bicicleta1 = Bicicleta("Trek", "Mountain Bike", 2021, "MTB")
+
+carro1.acelerar(50)
+bicicleta1.acelerar(20)
+
+print("Status do Carro:")
+print(carro1.status())
+print("Status da Bicicleta:")
+print(bicicleta1.status())
