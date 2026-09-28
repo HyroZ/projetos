@@ -41,3 +41,12 @@ def listar_catalogo():
   print("--- Catálogo de Produtos: ---")
   for produto in catalogo:
     print(produto)
+
+#Cadastrar Produtos
+adicionar_produto("Camiseta", 29.99, "Roupas", 50)
+adicionar_produto("Calça Jeans", 59.99, "Roupas", 30)
+adicionar_produto("Tênis Esportivo", 89.99, "Calçados", 20)
+adicionar_produto("Livro de Python", 39.99, "Livros", 100)
+adicionar_produto("Cadeira de Escritório", 149.99, "Móveis", 15)
+
+listar_catalogo()
