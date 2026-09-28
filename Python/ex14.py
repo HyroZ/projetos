@@ -30,3 +30,14 @@ def remover_produto(nome_produto):
 
 catalogo = []
 categorias = []
+
+def adicionar_produto(nome, preco, categoria, estoque):
+  novo_produto = Produto(nome, preco, categoria, estoque)
+  catalogo.append(novo_produto)
+  categorias.append(categoria)
+  print(f"Produto '{nome}' adicionado com sucesso!")
+
+def listar_catalogo():
+  print("--- Catálogo de Produtos: ---")
+  for produto in catalogo:
+    print(produto)
