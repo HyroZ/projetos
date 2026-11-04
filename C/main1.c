@@ -10,6 +10,10 @@ int main() {
     printf("Digite o valor de z: ");
     scanf("%d", &z);
 
+    for(int i = 0; i < z; i++){
+        res = res * x;
+    }
+
     printf("%d elevado a %d é: %ld\n", x, z, res);
     return 0;
 }
